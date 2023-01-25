@@ -2,7 +2,7 @@
 
 class BaseController
 {
-    protected $title = "Azubi Portal";
+    protected $title = "BaseController";
     protected $view = false;
     protected $exception = null;
 
@@ -11,6 +11,8 @@ class BaseController
         $viewPath = __DIR__."/../Views/".$this->view.".php";
 
         $controller = $this;
+
+        $projectPath = Configuration::getConfigParameter("path");
 
         ob_start();
         try {

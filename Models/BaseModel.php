@@ -69,7 +69,6 @@ class BaseModel
 
     protected function create()
     {
-        $this->password = self::encrypt($this->password);
         $values = "";
         foreach ($this->columns as $column) {
             $values .= "'".$this->$column."',";
