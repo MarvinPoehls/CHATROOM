@@ -30,7 +30,7 @@ class Chatroom extends BaseModel
 
     public static function getIdByName($name)
     {
-        $sql = "SELECT id FROM chatroom WHERE name = ".$name;
+        $sql = "SELECT id FROM chatroom WHERE name = '".$name . "'";
         $result = DatabaseConnection::executeMysqlQuery($sql);
         $result = mysqli_fetch_row($result);
         return $result[0];

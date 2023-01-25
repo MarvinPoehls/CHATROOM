@@ -3,6 +3,6 @@
         ERROR
     </div>
     <div class="card-body">
-        <p class="card-text">Message: <?php echo $controller->getException()->getMessage(); ?></p>
+        <p class="card-text">Message: <?php echo $exception; ?></p>
     </div>
 </div>

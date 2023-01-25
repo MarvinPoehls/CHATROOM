@@ -7,7 +7,6 @@ class Room extends BaseController
     protected $name = "roomname";
     protected $chatroom;
     protected $member = [];
-    protected $messages = [];
 
     public function render()
     {
@@ -16,24 +15,20 @@ class Room extends BaseController
         parent::render();
     }
 
-    public function load()
-    {
-        //$member = get Group Member
-        //$messages = get messages in order
-    }
-
     public function getName()
     {
         return $this->name;
     }
 
-    public function getMessages()
+    public function getData(): array
     {
-        $file = fopen("chatlogs/".$this->chatroom->getChatlog(), "r+");
-        while(!feof($file)) {
-            $this->messages[] .= fgets($file);
+        $data = [];
+        $file = fopen("chatlogs/".$this->chatroom->getChatlog(), "r");
+        fgetcsv($file);
+        while($row = fgetcsv($file)) {
+            $data[] = array("message" => $row[0], "name" => $row[1]);
         }
         fclose($file);
-        return $this->messages;
+        return $data;
     }
 }
