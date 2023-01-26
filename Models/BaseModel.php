@@ -5,6 +5,17 @@ class BaseModel
     protected $table = "";
     protected $columns = [];
 
+    public function getIdByName($name)
+    {
+        $sql = "SELECT id FROM " . $this->table . " WHERE name = '".$name . "'";
+        $result = DatabaseConnection::executeMysqlQuery($sql);
+        $result = mysqli_fetch_row($result);
+        if (isset($result[0])){
+            return $result[0];
+        }
+        return false;
+    }
+
     public function __set($name, $value)
     {
         if (property_exists($this, $name)) {
@@ -26,7 +37,7 @@ class BaseModel
         }
     }
 
-    protected function load($id)
+    public function load($id)
     {
         $this->id = $id;
         $sql = "SELECT * FROM ".$this->table." WHERE id = " . $id;

@@ -1,12 +1,13 @@
 function addMessage() {
     let textInput = $("#message");
     let text = textInput.val();
+    let user = $("#username").val();
     let file = $("#file").val();
 
     $.ajax({
         url: "index.php",
         type: "POST",
-        data: {controller: "AddMessage", text: text, file: file},
+        data: {controller: "AddMessage", text: text, file: file, user: user},
         success: function(){
             textInput.val("");
             let messages = $('#messages')
@@ -19,6 +20,18 @@ function addMessage() {
                 .attr("class", "row");
             message.append(row);
 
+            let textCol = $("<div></div>")
+                .attr("class", "col text-end");
+            row.append(textCol);
+
+            let textDiv = $("<div></div>")
+                .attr("class", "bg-light rounded-3 d-inline-block p-3 pb-0");
+            textCol.append(textDiv);
+
+            let textParagraph = $("<p></p>")
+                .html(text);
+            textDiv.append(textParagraph);
+
             let imgCol = $('<div></div>')
                 .attr('class', 'col-1');
             row.append(imgCol);
@@ -29,23 +42,6 @@ function addMessage() {
                 .attr("height", 60)
                 .attr("class", "d-inline-block rounded-circle");
             imgCol.append(img);
-
-            let textCol = $("<div></div>")
-                .attr("class", "col");
-            row.append(textCol);
-
-            let textDiv = $("<div></div>")
-                .attr("class", "bg-primary rounded-3 text-white d-inline-block p-3 pb-0");
-            textCol.append(textDiv);
-
-            let name = $("<p></p>")
-                .html("Name")
-                .attr("class", "fw-bold mb-1");
-            textDiv.append(name);
-
-            let textParagraph = $("<p></p>")
-                .html(text);
-            textDiv.append(textParagraph);
         }
     });
 }

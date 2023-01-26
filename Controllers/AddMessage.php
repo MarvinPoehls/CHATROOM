@@ -6,7 +6,7 @@ class AddMessage extends BaseController
     {
         $values = [];
         $values[] .= $this->getRequestParameter("text");
-        $values[] .= "Name";
+        $values[] .= $this->getRequestParameter("user");
         $filename = $this->getRequestParameter("file");
 
         $file = fopen("chatlogs/".$filename, "a");

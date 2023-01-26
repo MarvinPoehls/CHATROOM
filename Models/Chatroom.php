@@ -19,21 +19,13 @@ class Chatroom extends BaseModel
     {
         $controller = new BaseController();
         $room = $controller->getRequestParameter("room");
-        $sql = "SELECT name FROM chatroom WHERE name = '" . $room . "'";
+        $sql = "SELECT name FROM ".$this->table." WHERE name = '" . $room . "'";
         $result = DatabaseConnection::executeMysqlQuery($sql);
         if ($row = mysqli_fetch_row($result)) {
             echo "true";
         } else {
             echo "false";
         }
-    }
-
-    public static function getIdByName($name)
-    {
-        $sql = "SELECT id FROM chatroom WHERE name = '".$name . "'";
-        $result = DatabaseConnection::executeMysqlQuery($sql);
-        $result = mysqli_fetch_row($result);
-        return $result[0];
     }
 
     public function setId(string $id)
@@ -66,5 +58,17 @@ class Chatroom extends BaseModel
         $this->chatlog = $chatlog;
     }
 
-
+    public function getMembers(): array
+    {
+        $sql = "SELECT user.name FROM `user`
+                LEFT JOIN user2chatroom ON user.id = user2chatroom.user_id
+                LEFT JOIN chatroom ON chatroom_id = chatroom.id
+                WHERE chatroom.id = '".$this->id."';";
+        $result = DatabaseConnection::executeMysqlQuery($sql);
+        $members = array();
+        while ($row = mysqli_fetch_row($result)) {
+            $members[] .= $row[0];
+        }
+        return $members;
+    }
 }
