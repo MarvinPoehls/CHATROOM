@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97eea95a-4297-4f19-8341-2435f8136cbc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Models/User.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/User2Chatroom.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/AddMessage.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/AddMessage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/CreateRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CreateRoom.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Room.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/BaseModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/BaseModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Chatroom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Chatroom.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/foyer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/foyer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/room.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/addMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/addMessage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/checkInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/checkInput.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +68,7 @@
       <workItem from="1674551417460" duration="85000" />
       <workItem from="1674562322864" duration="12797000" />
       <workItem from="1674637827778" duration="27920000" />
-      <workItem from="1674724738629" duration="13716000" />
+      <workItem from="1674724738629" duration="22518000" />
     </task>
     <servers />
   </component>

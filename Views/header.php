@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     </head>
-    <body class="bg-primary overflow-hidden position-fixed h-100 w-100">
+    <body class="bg-primary overflow-hidden position-fixed w-100 h-100">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand ms-4" href="index.php">
@@ -24,11 +24,11 @@
                     <ul class="navbar-nav ms-auto">
                         <?php if ($controller->getTitle() !== "Foyer") { ?>
                             <li class="nav-item text-end">
-                                <a class="nav-link ms-4" href="index.php"><i class="bi bi-arrow-left-circle-fill text-white"></i><a/>
+                                <a class="nav-link ms-4" href="index.php"><i class="bi bi-arrow-left-circle-fill text-white"></i></a>
                             </li>
                         <?php } ?>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container-fluid">
+        <div class="container-fluid h-100">
