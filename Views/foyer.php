@@ -12,10 +12,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        <input type="text" class="form-control my-3" name="room" id="username" placeholder="Benutzername">
+                        <input type="text" class="form-control my-3" maxlength="20" id="username" placeholder="Benutzername">
                     </div>
                     <div class="col-12">
-                        <input type="text" class="form-control my-3" name="room" id="roomInput" placeholder="Name des Chatrooms">
+                        <input type="text" class="form-control my-3" maxlength="32" id="roomInput" placeholder="Name des Chatrooms">
                     </div>
                     <div class="col-6">
                         <button type="button" onclick="checkLoad()" class="btn btn-primary my-3">Chatroom beitreten</button>

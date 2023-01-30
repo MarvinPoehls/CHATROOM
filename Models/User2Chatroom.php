@@ -37,4 +37,10 @@ class User2Chatroom extends BaseModel
         }
         return true;
     }
+
+    public static function deleteConnection($userId, $roomId)
+    {
+        $sql = "DELETE FROM user2connection WHERE user_id = '".$userId."' AND room_id = '".$roomId."'";
+        DatabaseConnection::executeMysqlQuery($sql);
+    }
 }

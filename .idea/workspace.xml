@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97eea95a-4297-4f19-8341-2435f8136cbc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Controllers/GetActiveUsers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/Message.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/onlineStatus.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/AddMessage.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Login.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/BaseModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/BaseModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Chatroom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Chatroom.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/User2Chatroom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/User2Chatroom.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/foyer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/foyer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/login.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/room.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/addMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/addMessage.js" afterDir="false" />
     </list>
@@ -68,7 +78,10 @@
       <workItem from="1674551417460" duration="85000" />
       <workItem from="1674562322864" duration="12797000" />
       <workItem from="1674637827778" duration="27920000" />
-      <workItem from="1674724738629" duration="22518000" />
+      <workItem from="1674724738629" duration="24816000" />
+      <workItem from="1674811301753" duration="17782000" />
+      <workItem from="1675070398170" duration="7296000" />
+      <workItem from="1675078829384" duration="12166000" />
     </task>
     <servers />
   </component>

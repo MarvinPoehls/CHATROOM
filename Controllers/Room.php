@@ -16,10 +16,40 @@ class Room extends BaseController
         $this->chatroom->load($this->chatroom->getIdByName($this->name));
 
         $this->username = $this->getRequestParameter("username");
-
         $this->checkUser();
 
+        $this->addUser2Chatroom();
+
         parent::render();
+    }
+
+    public function getMessageCount(): int
+    {
+        $file = fopen("chatlogs/".$this->name.".csv", "r");
+        fgetcsv($file);
+        $i = 0;
+        while ($row = fgetcsv($file)) {
+            $i++;
+        }
+        return $i;
+    }
+
+    public function deleteUser()
+    {
+        $room = $this->getRequestParameter("room");
+        $chatroom = new Chatroom();
+        $roomId = $chatroom->getIdByName($room);
+
+        $username = $this->getRequestParameter("username");
+        $user = new User();
+        $userId = $user->getIdByName($username);
+
+        User2Chatroom::deleteConnection($userId, $roomId);
+    }
+
+    public function getMembers()
+    {
+        return $this->chatroom->getMembers();
     }
 
     public function getName()
@@ -48,22 +78,20 @@ class Room extends BaseController
         } else {
             $this->user->load($this->user->getIdByName($this->username));
         }
+    }
 
-        $user2chatroom = new User2Chatroom();
-        if ($user2chatroom->isNew($this->user->getId(), $this->chatroom->getId())) {
-            $user2chatroom->setUserId($this->user->getId());
-            $user2chatroom->setChatroomId($this->chatroom->getId());
-            $user2chatroom->save();
+    protected function addUser2Chatroom()
+    {
+        if ($this->chatroom->isUserNew($this->user->getId())) {
+            $u2a = new User2Chatroom();
+            $u2a->setUserId($this->user->getId());
+            $u2a->setChatroomId($this->chatroom->getId());
+            $u2a->save();
         }
     }
 
     public function getUsername(): string
     {
         return $this->username;
-    }
-
-    public function getMembers()
-    {
-        return $this->chatroom->getMembers();
     }
 }

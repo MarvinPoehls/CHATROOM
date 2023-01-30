@@ -52,7 +52,7 @@ class BaseModel
         }
     }
 
-    protected function save()
+    public function save()
     {
         if ($this->id == false) {
             $this->create();
