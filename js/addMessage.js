@@ -12,7 +12,6 @@ function checkMessages() {
         success: function(newMessages){
             let file = $('#room').text() + ".csv";
 
-            console.log(newMessages + " : " + messages)
             while (newMessages > messages) {
                 messages++;
                 $.ajax({
@@ -21,7 +20,6 @@ function checkMessages() {
                     data: {controller: 'Message', action: 'getRow', row: messages, file: file},
                     success: function(data){
                         data = JSON.parse(data);
-                        console.log(data);
                         if (data[1] !== thisUser) {
                             addHtmlMessage(data[0], data[1]);
                         }

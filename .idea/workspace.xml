@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97eea95a-4297-4f19-8341-2435f8136cbc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Controllers/GetActiveUsers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controllers/Message.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/onlineStatus.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/AddMessage.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Login.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/GetActiveUsers.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Room.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/BaseModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/BaseModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Chatroom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Chatroom.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/User2Chatroom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/User2Chatroom.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/foyer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/foyer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/login.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/room.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/addMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/addMessage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/onlineStatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/onlineStatus.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +74,8 @@
       <workItem from="1674724738629" duration="24816000" />
       <workItem from="1674811301753" duration="17782000" />
       <workItem from="1675070398170" duration="7296000" />
-      <workItem from="1675078829384" duration="12166000" />
+      <workItem from="1675078829384" duration="16106000" />
+      <workItem from="1675154679846" duration="9004000" />
     </task>
     <servers />
   </component>

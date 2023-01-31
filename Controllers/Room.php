@@ -34,19 +34,6 @@ class Room extends BaseController
         return $i;
     }
 
-    public function deleteUser()
-    {
-        $room = $this->getRequestParameter("room");
-        $chatroom = new Chatroom();
-        $roomId = $chatroom->getIdByName($room);
-
-        $username = $this->getRequestParameter("username");
-        $user = new User();
-        $userId = $user->getIdByName($username);
-
-        User2Chatroom::deleteConnection($userId, $roomId);
-    }
-
     public function getMembers()
     {
         return $this->chatroom->getMembers();

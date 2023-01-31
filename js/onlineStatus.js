@@ -1,23 +1,33 @@
 setInterval(checkUsers, 1000);
+let members = [];
+let room = $('#room').text();
+let username = $('#username').val().trim();
 
-document.onvisibilitychange = () => {
-    if (document.visibilityState === 'hidden') {
+document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === 'visible') {
+        addUser();
+    } else {
         deleteUser();
     }
-};
+});
 
 function deleteUser() {
-    let username = $('#username').val();
-    let room = $('#room').text();
-
     $.ajax({
         url: "index.php",
         type: "POST",
-        data: {controller: "Room", action: "deleteUser", username: username, room: room},
+        data: {controller: "UserController", action: 'delete', username: username, room: room},
     });
 }
 
-function addUser(name) {
+function addUser() {
+    $.ajax({
+        url: "index.php",
+        type: "POST",
+        data: {controller: "UserController", action: 'add', username: username, room: room},
+    });
+}
+
+function addHtmlUser(name) {
     let user = $('<div></div>')
         .attr('class', 'row bg-white p-2 m-2 rounded')
         .attr('id', name);
@@ -47,12 +57,13 @@ function checkUsers() {
     $.ajax({
         url: "index.php",
         type: "POST",
-        data: {controller: 'GetActiveUsers', room: $('#room').text()},
-        success: function(data){
+        data: {controller: 'UserController', action: 'getActive', room: room},
+        success: function(newActiveUser){
+            newActiveUser = JSON.parse(newActiveUser);
             $('#activUser').empty();
-            data = JSON.parse(data);
-            $.each(data, function (index,name){
-                addUser(name)
+
+            newActiveUser.forEach(function (newActiveUser) {
+                addHtmlUser(newActiveUser);
             });
         }
     });
