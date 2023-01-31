@@ -19,7 +19,21 @@
     <div class="col">
         <div class="row bg-light border-bottom p-1">
             <div class="col">
-                <h2>Chatroom: <span id="room"><?= $controller->getName(); ?></span></h2>
+                <div class="row">
+                    <div class="col">
+                        <h2>Chatroom: <span id="room"><?= $controller->getName(); ?></span></h2>
+                    </div>
+                    <div class="col">
+                        <div class="float-end">
+                            <select id="notificationOption" class="form-select" aria-label="Default select example">
+                                <option selected>Benachrichtigungen</option>
+                                <option value="activ">Aktiviert</option>
+                                <option value="inactiv">Deaktiviert</option>
+                                <option value="background">Nur wenn Fenster im Hintergrund</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row bg-white p-4 overflow-auto" style="height: 80vh">

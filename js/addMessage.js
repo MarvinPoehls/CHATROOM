@@ -69,6 +69,8 @@ function addHtmlMessage(text, user) {
         let textParagraph = $("<p></p>")
             .html(text);
         textDiv.append(textParagraph);
+
+        playNotificationSound();
     } else {
         let textCol = $("<div></div>")
             .attr("class", "col text-end");
@@ -95,20 +97,40 @@ function addHtmlMessage(text, user) {
     }
 }
 
+function playNotificationSound() {
+    let audio = new Audio('audio/message.mp3');
+    let option = $('#notificationOption').find(":selected").val();
+
+    console.log(option);
+    switch (option) {
+        case "activ":
+            audio.play();
+            break;
+        case "inactiv":
+            break;
+        case "background":
+            if (document.visibilityState === "hidden") {
+                audio.play();
+            }
+            break;
+        default:
+            audio.play();
+    }
+}
+
 function addMessage() {
     let textInput = $("#message");
     let text = textInput.val().trim();
-    let user = $("#username").val();
     let file = $("#file").val();
 
     if (text !== "") {
         $.ajax({
             url: "index.php",
             type: "POST",
-            data: {controller: "Message", action:'addMessage', text: text, file: file, user: user},
+            data: {controller: "Message", action:'addMessage', text: text, file: file, user: username},
             success: function(){
                 $("#message").val("");
-                addHtmlMessage(text, user);
+                addHtmlMessage(text, username);
             }
         });
     }

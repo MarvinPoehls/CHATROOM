@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97eea95a-4297-4f19-8341-2435f8136cbc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Controllers/UserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/message.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/GetActiveUsers.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Room.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/User2Chatroom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/User2Chatroom.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/room.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/addMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/addMessage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/onlineStatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/onlineStatus.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,23 +34,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/xampp/htdocs/Chatroom/js&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/xampp/htdocs/Chatroom/audio",
+    "settings.editor.selected.configurable": "editing.templates",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\xampp\htdocs\Chatroom\audio" />
       <recent name="C:\xampp\xampp\htdocs\Chatroom\js" />
       <recent name="C:\xampp\xampp\htdocs\Chatroom" />
       <recent name="C:\xampp\xampp\htdocs\Chatroom\Views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\xampp\htdocs\Chatroom\audio" />
       <recent name="C:\xampp\xampp\htdocs\Chatroom" />
       <recent name="C:\xampp\xampp\htdocs\Chatroom\Images" />
     </key>
@@ -75,7 +74,7 @@
       <workItem from="1674811301753" duration="17782000" />
       <workItem from="1675070398170" duration="7296000" />
       <workItem from="1675078829384" duration="16106000" />
-      <workItem from="1675154679846" duration="9004000" />
+      <workItem from="1675154679846" duration="16752000" />
     </task>
     <servers />
   </component>
