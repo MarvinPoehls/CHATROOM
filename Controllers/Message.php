@@ -21,6 +21,7 @@ class Message extends BaseController
         $values = [];
         $values[] .= $this->getRequestParameter("text");
         $values[] .= $this->getRequestParameter("user");
+        $values[] .= $this->getRequestParameter("image");
         $filename = $this->getRequestParameter("file");
 
         $file = fopen("chatlogs/".$filename, "a");

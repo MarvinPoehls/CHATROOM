@@ -21,7 +21,7 @@ function checkMessages() {
                     success: function(data){
                         data = JSON.parse(data);
                         if (data[1] !== thisUser) {
-                            addHtmlMessage(data[0], data[1]);
+                            addHtmlMessage(data[0], data[1], data[2]);
                         }
                     }
                 });
@@ -30,7 +30,7 @@ function checkMessages() {
     });
 }
 
-function addHtmlMessage(text, user) {
+function addHtmlMessage(text, user, image = false) {
     let messages = $('#messages');
 
     let message = $('<div></div>')
@@ -66,6 +66,14 @@ function addHtmlMessage(text, user) {
             .attr('class','fw-bold mb-1');
         textDiv.append(header);
 
+        if (image) {
+            let picture = $('<img>')
+                .attr('src', image)
+                .attr('width', '200')
+                .attr('class','mb-2');
+            textDiv.append(picture);
+        }
+
         let textParagraph = $("<p></p>")
             .html(text);
         textDiv.append(textParagraph);
@@ -80,7 +88,16 @@ function addHtmlMessage(text, user) {
             .attr("class", "bg-light rounded-3 d-inline-block p-3 pb-0");
         textCol.append(textDiv);
 
+        if (image) {
+            let picture = $('<img>')
+                .attr('src', image)
+                .attr('width', '200')
+                .attr('class','mb-2');
+            textDiv.append(picture);
+        }
+
         let textParagraph = $("<p></p>")
+            .attr('class', 'text-start')
             .html(text);
         textDiv.append(textParagraph);
 
@@ -101,7 +118,6 @@ function playNotificationSound() {
     let audio = new Audio('audio/message.mp3');
     let option = $('#notificationOption').find(":selected").val();
 
-    console.log(option);
     switch (option) {
         case "activ":
             audio.play();
@@ -122,16 +138,57 @@ function addMessage() {
     let textInput = $("#message");
     let text = textInput.val().trim();
     let file = $("#file").val();
+    let image = $('#imageInput').prop('files')[0];
+    if (image != null) {
+        let reader = new FileReader();
+        reader.readAsDataURL(image);
+        reader.onload = function () {
+            image = reader.result;
+            $.ajax({
+                url: "index.php",
+                type: "POST",
+                data: {controller: "Message", action:'addMessage', text: text, image: image, file: file, user: username},
+                success: function(){
+                    textInput.val("");
+                    clearImageInput();
+                    addHtmlMessage(text, username, image);
+                }
+            });
+        };
+    } else {
+        if (text !== "") {
+            $.ajax({
+                url: "index.php",
+                type: "POST",
+                data: {controller: "Message", action:'addMessage', text: text, image: image, file: file, user: username},
+                success: function(){
+                    textInput.val("");
+                    clearImageInput();
+                    addHtmlMessage(text, username, image);
+                }
+            });
+        }
+    }
+}
 
-    if (text !== "") {
-        $.ajax({
-            url: "index.php",
-            type: "POST",
-            data: {controller: "Message", action:'addMessage', text: text, file: file, user: username},
-            success: function(){
-                $("#message").val("");
-                addHtmlMessage(text, username);
-            }
-        });
+function clearImageInput() {
+    let imageInput = $('#imageInput');
+    imageInput.val('');
+    $('#inputIcon').attr('class', 'bi bi-paperclip');
+    $('#inputLabel').attr('for', 'imageInput');
+    $('#buttonCol').attr('class', 'col-2');
+    $('#imageInputCol').attr('class', 'col d-none');
+}
+
+function imageInput() {
+    let image = $('#imageInput').val();
+    image = image.replace(/^.*\\/, "");
+
+    if (image !== "") {
+        $('#inputIcon').attr('class', 'bi bi-x');
+        $('#inputLabel').attr('for', 'deleteInput');
+        $('#buttonCol').attr('class', 'col-4');
+        $('#imageInputCol').attr('class', 'col');
+        $('#fileName').val(image);
     }
 }

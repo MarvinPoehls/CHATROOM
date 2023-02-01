@@ -6,7 +6,7 @@ class CreateRoom extends BaseController
     {
         $roomName = $this->getRequestParameter("room");
         $username = $this->getRequestParameter("username");
-        $headers = ["message","name"];
+        $headers = ["message","name","image"];
         $file = fopen("chatlogs/".$roomName . ".csv", "w");
         fputcsv($file, $headers);
         $room = new Chatroom();
