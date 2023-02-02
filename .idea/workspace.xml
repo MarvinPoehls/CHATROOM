@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="97eea95a-4297-4f19-8341-2435f8136cbc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/CreateRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CreateRoom.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Message.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/foyer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/foyer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/room.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/addMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/message.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +77,7 @@
       <workItem from="1675154679846" duration="22660000" />
       <workItem from="1675242896067" duration="7068000" />
       <workItem from="1675254122700" duration="12960000" />
+      <workItem from="1675329206363" duration="12502000" />
     </task>
     <servers />
   </component>

@@ -10,16 +10,13 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     </head>
-    <body class="bg-primary overflow-hidden position-fixed w-100 h-100">
+    <body class="bg-primary h-100 overflow-hidden">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand ms-4" href="index.php">
                     <img src="https://i.postimg.cc/rwnHZBzV/Chatroom.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
                     Chatroom
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <?php if ($controller->getTitle() !== "Foyer") { ?>

@@ -1,13 +1,13 @@
 <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
+    <div class="col-3 d-sm-none d-md-block"></div>
+    <div class="col-12 col-md-6">
         <div class="card text-center mt-4">
             <h1 class="card-title p-4">Willkommen bei Chatroom!</h1>
         </div>
     </div>
-    <div class="col-3"></div>
-    <div class="col-3"></div>
-    <div class="col-6">
+    <div class="col-3 d-sm-none d-md-block"></div>
+    <div class="col-3 d-sm-none d-md-block"></div>
+    <div class="col-12 col-md-6">
         <div class="card mt-3">
             <div class="card-body">
                 <div class="row">
@@ -17,17 +17,17 @@
                     <div class="col-12">
                         <input type="text" class="form-control my-3" maxlength="32" id="roomInput" placeholder="Name des Chatrooms">
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-lg-6 d-grid">
                         <button type="button" onclick="checkLoad()" class="btn btn-primary my-3">Chatroom beitreten</button>
                     </div>
-                    <div class="col-6 text-end">
+                    <div class="col-12 col-lg-6 d-grid text-end">
                         <button type="button" onclick="checkCreate()" class="btn btn-primary my-3">Neuen Chatroom anlegen</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-3"></div>
+    <div class="col-3 d-sm-none d-md-block"></div>
 </div>
 <div id="modal" class="modal" tabindex="-1">
     <div class="modal-dialog">
