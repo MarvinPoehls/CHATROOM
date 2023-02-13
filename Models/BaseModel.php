@@ -92,7 +92,7 @@ class BaseModel
         $this->id = mysqli_insert_id(DatabaseConnection::getConnection());
     }
 
-    public static function encrypt($password)
+    public static function encryptOneWay($password)
     {
         return md5($password . Configuration::getConfigParameter("salt"));
     }

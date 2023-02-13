@@ -21,6 +21,7 @@ function checkMessages() {
                     success: function(data){
                         data = JSON.parse(data);
                         if (data[1] !== thisUser) {
+                            data[0] = CryptoJS.AES.decrypt(data[0], $('#encryption').val()).toString(CryptoJS.enc.Utf8);
                             addHtmlMessage(data[0], data[1], data[2]);
                         }
                     }
@@ -33,24 +34,36 @@ function checkMessages() {
 function addHtmlMessage(text, user, image = false) {
     let messages = $('#messages');
 
+    if (user === thisUser) {
+        let gap = $('<div></div>')
+            .attr("class", "col-3");
+        messages.append(gap);
+    }
+
     let message = $('<div></div>')
-        .attr("class", "col-12 my-2 p-2");
+        .attr("class", "col-9 my-2 p-2");
     messages.append(message);
 
+    if (user !== thisUser) {
+        let gap = $('<div></div>')
+            .attr("class", "col-3");
+        messages.append(gap);
+    }
+
     let row = $('<div></div>')
-        .attr("class", "row");
+        .attr("class", "row flex-nowrap");
     message.append(row);
 
     if (user !== thisUser) {
         let imgCol = $('<div></div>')
-            .attr('class', 'col-1');
+            .attr('class', 'col-auto');
         row.append(imgCol);
 
         let img = $('<img>')
-            .attr("src", "https://www.senertec.de/wp-content/uploads/2020/04/blank-profile-picture-973460_1280-600x600.png")
+            .attr("src", "https://i.postimg.cc/1XffnWPL/Profil-Picture.png")
             .attr("width", 60)
             .attr("height", 60)
-            .attr("class", "d-inline-block rounded-circle");
+            .attr("class", "img-fluid rounded-circle");
         imgCol.append(img);
 
         let textCol = $("<div></div>")
@@ -70,11 +83,12 @@ function addHtmlMessage(text, user, image = false) {
             let picture = $('<img>')
                 .attr('src', image)
                 .attr('width', '200')
-                .attr('class','mb-2');
+                .attr('class','mb-2 img-fluid');
             textDiv.append(picture);
         }
 
         let textParagraph = $("<p></p>")
+            .attr('class', 'text-break')
             .html(text);
         textDiv.append(textParagraph);
 
@@ -102,11 +116,11 @@ function addHtmlMessage(text, user, image = false) {
         textDiv.append(textParagraph);
 
         let imgCol = $('<div></div>')
-            .attr('class', 'col-1 text-end');
+            .attr('class', 'col-auto text-end');
         row.append(imgCol);
 
         let img = $('<img>')
-            .attr("src", "https://www.senertec.de/wp-content/uploads/2020/04/blank-profile-picture-973460_1280-600x600.png")
+            .attr("src", "https://i.postimg.cc/1XffnWPL/Profil-Picture.png")
             .attr("width", 60)
             .attr("height", 60)
             .attr("class", "d-inline-block rounded-circle");
@@ -137,8 +151,14 @@ function playNotificationSound() {
 function addMessage() {
     let textInput = $("#message");
     let text = textInput.val().trim();
+    text = $.parseHTML(text);
+    text = $(text).text();
+    let password = $('#encryption').val();
+    text = CryptoJS.AES.encrypt(text, password).toString();
+
     let file = $("#file").val();
     let image = $('#imageInput').prop('files')[0];
+
     if (image != null) {
         let reader = new FileReader();
         reader.readAsDataURL(image);
@@ -151,23 +171,23 @@ function addMessage() {
                 success: function(){
                     textInput.val("");
                     clearImageInput();
+                    text = CryptoJS.AES.decrypt(text, $('#encryption').val()).toString(CryptoJS.enc.Utf8);
                     addHtmlMessage(text, username, image);
                 }
             });
         };
-    } else {
-        if (text !== "") {
-            $.ajax({
-                url: "index.php",
-                type: "POST",
-                data: {controller: "Message", action:'addMessage', text: text, image: image, file: file, user: username},
-                success: function(){
-                    textInput.val("");
-                    clearImageInput();
-                    addHtmlMessage(text, username, image);
-                }
-            });
-        }
+    } else if (image != null || text != null) {
+        $.ajax({
+            url: "index.php",
+            type: "POST",
+            data: {controller: "Message", action:'addMessage', text: text, image: image, file: file, user: username},
+            success: function(){
+                textInput.val("");
+                clearImageInput();
+                text = CryptoJS.AES.decrypt(text, $('#encryption').val()).toString(CryptoJS.enc.Utf8);
+                addHtmlMessage(text, username, image);
+            }
+        });
     }
 }
 
@@ -176,7 +196,7 @@ function clearImageInput() {
     imageInput.val('');
     $('#inputIcon').attr('class', 'bi bi-paperclip');
     $('#inputLabel').attr('for', 'imageInput');
-    $('#buttonCol').attr('class', 'col-2');
+    $('#buttonCol').attr('class', 'col-auto');
     $('#imageInputCol').attr('class', 'col d-none');
 }
 

@@ -81,4 +81,9 @@ class Room extends BaseController
     {
         return $this->username;
     }
+
+    public function getEncryption(): string
+    {
+        return $this->chatroom->getEncryption();
+    }
 }

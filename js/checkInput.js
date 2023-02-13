@@ -33,7 +33,7 @@ function checkLoad() {
             data: {controller: 'Chatroom', action: 'isDuplicate', room: text},
             success: function (data) {
                 if (data === "true") {
-                    window.location.href = "index.php?controller=Room&room=" + text + "&username=" + username;;
+                    window.location.href = "index.php?controller=Room&room=" + text + "&username=" + username;
                 } else {
                     $('#errorText').text('Es exestiert kein Chatroom mit dem Name "' + text + '".');
                     $('#modal').modal('show');
@@ -41,7 +41,17 @@ function checkLoad() {
             }
         });
     } else {
-        $('#errorText').text('Bitte fülle alle Felder aus.');
+        $('#errorText').text('Bitte wähle ein Name und ein Chatroom.');
+        $('#modal').modal('show');
+    }
+}
+
+function checkUsername(room) {
+    let username = $('#username').val().trim()
+    if (username !== "") {
+        window.location.href = "index.php?controller=Room&room=" + room + "&username=" + username;
+    } else {
+        $('#errorText').text('Bitte wähle zuerst ein Name.');
         $('#modal').modal('show');
     }
 }

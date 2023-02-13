@@ -3,16 +3,28 @@
 class Chatroom extends BaseModel
 {
     protected $table = "chatroom";
-    protected $columns = ["id", "name", "chatlog"];
+    protected $columns = ["id", "name", "chatlog", "encryption"];
     protected $id = "";
     protected $name = "";
     protected $chatlog = "";
+    protected $encryption = "";
 
     public function __construct($id = false)
     {
         if ($id) {
             $this->load($id);
         }
+    }
+
+    public static function getRandomRooms($amount = 1): array
+    {
+        $sql = "SELECT name FROM chatroom ORDER BY RAND() LIMIT " . $amount;
+        $result = DatabaseConnection::executeMysqlQuery($sql);
+        $rooms = [];
+        while($row = mysqli_fetch_row($result)) {
+            $rooms[] = $row[0];
+        }
+        return $rooms;
     }
 
     public function isDuplicate()
@@ -82,4 +94,15 @@ class Chatroom extends BaseModel
     {
         $this->chatlog = $chatlog;
     }
+
+    public function getEncryption(): string
+    {
+        return $this->encryption;
+    }
+
+    public function setEncryption(string $encryption)
+    {
+        $this->encryption = $encryption;
+    }
+
 }
