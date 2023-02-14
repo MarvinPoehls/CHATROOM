@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row overflow-auto" style="max-height: 95%">
     <div class="col-3 d-sm-none d-md-block"></div>
     <div class="col-12 col-md-6">
         <div class="card text-center mt-4">
@@ -37,7 +37,7 @@
     </div>
     <div class="col-3 d-sm-none d-md-block"></div>
     <div class="col-3 d-sm-none d-md-block"></div>
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6 mb-5">
         <div class="card text-center mt-4">
             <h2 class="border-bottom m-2 pb-2">Zufällige Chatrooms<button class="btn float-end" onClick="window.location.reload();"><i class="bi bi-arrow-clockwise"></i></button></h2>
             <?php foreach (Chatroom::getRandomRooms(4) as $room) { ?>

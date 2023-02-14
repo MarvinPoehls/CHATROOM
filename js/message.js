@@ -1,6 +1,18 @@
 let messages = $('#messageCount').val();
 let thisUser = $('#username').val();
+let textInput = $("#message");
 setInterval(checkMessages, 1000);
+
+textInput.on( "keypress", function (e) {
+    if(e.which === 13 && !e.shiftKey) {
+        e.preventDefault();
+        addMessage();
+    }
+});
+
+function scrollDown() {
+    $('#messages').animate({scrollTop: 1000000}, 'slow');
+}
 
 function checkMessages() {
     let room = $('#room').text();
@@ -83,7 +95,7 @@ function addHtmlMessage(text, user, image = false) {
             let picture = $('<img>')
                 .attr('src', image)
                 .attr('width', '200')
-                .attr('class','mb-2 img-fluid');
+                .attr('class','mb-2 img-fluid rounded');
             textDiv.append(picture);
         }
 
@@ -106,7 +118,7 @@ function addHtmlMessage(text, user, image = false) {
             let picture = $('<img>')
                 .attr('src', image)
                 .attr('width', '200')
-                .attr('class','mb-2');
+                .attr('class','mb-2 img-fluid rounded');
             textDiv.append(picture);
         }
 
@@ -149,10 +161,10 @@ function playNotificationSound() {
 }
 
 function addMessage() {
-    let textInput = $("#message");
     let text = textInput.val().trim();
     text = $.parseHTML(text);
     text = $(text).text();
+    text = text.replace(/\n/g, '<br>');
     let password = $('#encryption').val();
     text = CryptoJS.AES.encrypt(text, password).toString();
 
@@ -189,6 +201,7 @@ function addMessage() {
             }
         });
     }
+    scrollDown();
 }
 
 function clearImageInput() {

@@ -1,7 +1,12 @@
-setInterval(checkUsers, 1000);
-let members = [];
 let room = $('#room').text();
 let username = $('#username').val().trim();
+let activeUsers = [];
+
+setInterval(checkUsers, 1000);
+
+if (window.performance.getEntriesByType('navigation').map((nav) => nav.type).includes('reload')) {
+    addUser();
+}
 
 document.addEventListener("visibilitychange", function() {
     if (document.visibilityState === 'visible') {
@@ -27,44 +32,59 @@ function addUser() {
     });
 }
 
-function addHtmlUser(name) {
-    let user = $('<div></div>')
-        .attr('class', 'row bg-white p-2 m-2 rounded')
-        .attr('id', name);
-    $('#activUser').append(user);
-
-    let imgCol = $('<div></div>')
-        .attr('class', 'col-3');
-    user.append(imgCol);
-
-    let img = $('<img>')
-        .attr('src', 'https://www.senertec.de/wp-content/uploads/2020/04/blank-profile-picture-973460_1280-600x600.png')
-        .attr('width', '40')
-        .attr('height', '40')
-        .attr('class', 'd-inline-block rounded-circle');
-    imgCol.append(img);
-
-    let nameCol = $('<div></div>')
-        .attr('class', 'col');
-    user.append(nameCol);
-
-    let nameParagraph = $('<p></p>')
-        .html(name);
-    nameCol.append(nameParagraph);
-}
-
 function checkUsers() {
     $.ajax({
         url: "index.php",
         type: "POST",
         data: {controller: 'UserController', action: 'getActive', room: room},
-        success: function(newActiveUser){
-            newActiveUser = JSON.parse(newActiveUser);
-            $('#activUser').empty();
+        success: function(newActiveUsers){
+            newActiveUsers = JSON.parse(newActiveUsers);
 
-            newActiveUser.forEach(function (newActiveUser) {
-                addHtmlUser(newActiveUser);
+            let deleteUser = activeUsers.filter(x => !newActiveUsers.includes(x));
+            let addUser = newActiveUsers.filter(x => !activeUsers.includes(x));
+
+            $.each(deleteUser, function (i, element) {
+                if (element !== "") {
+                    $('#' + element).remove();
+                    activeUsers = removeFromArray(activeUsers, element);
+                }
             });
+
+            $.each(addUser, function (i, element) {
+                if (element !== "") {
+                    addHtmlUser(element);
+                    activeUsers.push(username);
+                }
+            });
+
+            activeUsers = newActiveUsers;
         }
     });
+}
+
+function removeFromArray(arr, value) {
+    let i = 0;
+    while (i < arr.length) {
+        if (arr[i] === value) {
+            arr.splice(i, 1);
+        } else {
+            ++i;
+        }
+    }
+    return arr;
+}
+
+function addHtmlUser(name) {
+    let user = $(
+        '<div id="' + name + '" class="row bg-white p-2 m-2 rounded">\n' +
+            '<div class="col-auto">\n ' +
+                '<img src="https://i.postimg.cc/1XffnWPL/Profil-Picture.png" class="d-inline-block rounded-circle" height="40" width="40">\n' +
+            '</div>\n' +
+            '<div class="col">\n' +
+                '<p>' + name + '</p>\n' +
+            '</div>\n' +
+        '</div>'
+    );
+
+    $('#activeUser').append(user);
 }

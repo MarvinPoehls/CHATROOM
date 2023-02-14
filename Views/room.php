@@ -1,41 +1,25 @@
 <div class="row flex-nowrap bg-white h-100 overflow-hidden">
     <div class="col-auto px-0">
-        <div id="sidebar" class="collapse collapse-horizontal show border-end vh-100 bg-light shadow-sm">
-            <div id="sidebar-nav" class="list-group border-0 rounded-0">
-                <div class="p-2">
-                    <h4>Aktive Teilnehmer</h4>
-                </div>
-                <ul class="list-group" id="activeUser">
-                    <?php foreach ($controller->getMembers() as $member) { ?>
-                        <div class="row bg-white p-2 m-2 rounded">
-                            <div class="col-3">
-                                <img src="https://i.postimg.cc/1XffnWPL/Profil-Picture.png" class="d-inline-block rounded-circle" height="40" width="40">
-                            </div>
-                            <div class="col">
-                                <p><?= $member ?></p>
-                            </div>
-                        </div>
-                    <?php } ?>
-                </ul>
+        <div id="sidebar" class="collapse border-end vh-100 bg-light">
+            <div class="p-2">
+                <h4>Aktive Teilnehmer</h4>
             </div>
+            <div id="activeUser"></div>
         </div>
     </div>
     <div class="col">
         <div class="row bg-light border-bottom p-1">
             <div class="col">
                 <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-auto d-flex align-items-center">
-                                <button data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-dark bg-white">
-                                    <i class="bi bi-list"></i>
-                                </button>
-                            </div>
-                            <div class="col">
-                                <h2>Chatroom: <span id="room"><?= $controller->getName(); ?></span></h2>
-                            </div>
-                        </div>
+                    <div class="col-auto d-flex align-items-center">
+                        <button data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-dark bg-white">
+                            <i class="bi bi-list"></i>
+                        </button>
                     </div>
+                    <div class="col-lg-auto col-md-6 col-auto">
+                        <h2>Chatroom: <span id="room"><?= $controller->getName(); ?></span></h2>
+                    </div>
+                    <div class="col"></div>
                     <div class="col-auto d-flex align-items-center">
                         <div class="row float-end">
                             <div class="col-auto d-flex align-items-center" data-toggle="tooltip" data-placement="bottom" title="Push Nachrichten">
@@ -56,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="row bg-white p-4 overflow-auto position-relative" id="messages" style="height: 70vh">
+        <div class="row bg-white p-4 overflow-auto position-relative" id="messages" style="height: 80%">
             <?php foreach ($controller->getData() as $data) {?>
                 <?php if ($data["message"] != "" || $data["image"] != "") { ?>
                     <?php if ($data["username"] == $controller->getUsername()) {?>
@@ -66,7 +50,7 @@
                                 <div class="col text-end">
                                     <div class="bg-light rounded-3 d-inline-block p-3 pb-0">
                                         <?php if ($data["image"] != "") { ?>
-                                            <img src="<?= $data["image"] ?>" width="200" class="mb-2 img-fluid">
+                                            <img src="<?= $data["image"] ?>" width="200" class="mb-2 img-fluid rounded">
                                         <?php } ?>
                                         <p class="text-start text-break decode"><?= $data["message"] ?></p>
                                     </div>
@@ -86,7 +70,7 @@
                                     <div class="bg-primary rounded-3 text-white d-inline-block p-3 pb-0">
                                         <p class="fw-bold mb-1"><?= $data["username"] ?></p>
                                         <?php if ($data["image"] != "") { ?>
-                                            <img src="<?= $data["image"] ?>" width="200" class="mb-2 img-fluid">
+                                            <img src="<?= $data["image"] ?>" width="200" class="mb-2 img-fluid rounded">
                                         <?php } ?>
                                         <p class="text-break decode"><?= $data["message"] ?></p>
                                     </div>
@@ -109,7 +93,7 @@
             <div class="col-auto" id="buttonCol">
                 <div class="row">
                     <div class="col d-none" id="imageInputCol">
-                        <input type="text" class="form-control" id="fileName" readonly>
+                        <input type="text" class="form-control" id="fileName" disabled>
                     </div>
                     <div class="col-auto p-0">
                         <label id="inputLabel" for="imageInput" class="btn" role="button">
