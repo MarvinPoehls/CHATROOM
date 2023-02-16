@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97eea95a-4297-4f19-8341-2435f8136cbc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/js/notification.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/foyer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/foyer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/room.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/decodeMessages.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/decodeMessages.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/onlineStatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/onlineStatus.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,16 +38,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/xampp/htdocs/Chatroom/audio&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "18.14.0",
+    "javascript.nodejs.core.library.typings.version": "18.13.0",
+    "last_opened_file_path": "C:/xampp/xampp/htdocs/Chatroom/audio",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editing.templates",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\xampp\htdocs\Chatroom\audio" />
@@ -85,7 +88,10 @@
       <workItem from="1675415937484" duration="18398000" />
       <workItem from="1675765311792" duration="1093000" />
       <workItem from="1676279128772" duration="22697000" />
-      <workItem from="1676365733465" duration="17492000" />
+      <workItem from="1676365733465" duration="22396000" />
+      <workItem from="1676394141587" duration="597000" />
+      <workItem from="1676452308962" duration="5996000" />
+      <workItem from="1676538757314" duration="6479000" />
     </task>
     <servers />
   </component>

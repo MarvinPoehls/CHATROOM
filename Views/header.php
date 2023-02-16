@@ -14,11 +14,11 @@
     <body class="bg-primary h-100 overflow-hidden">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand ms-4" href="index.php">
-                    <img src="https://i.postimg.cc/rwnHZBzV/Chatroom.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
-                    Chatroom
+                <a class="navbar-brand ms-4 d-flex align-items-center" href="index.php">
+                    <img src="https://i.postimg.cc/rwnHZBzV/Chatroom.png" width="30" height="30" class="" alt="logo">
+                    <span class="ms-1">Chatroom</span>
                 </a>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <?php if ($controller->getTitle() !== "Foyer") { ?>
                             <li class="nav-item text-end">

@@ -23,13 +23,13 @@
                     <div class="col-auto d-flex align-items-center">
                         <div class="row float-end">
                             <div class="col-auto d-flex align-items-center" data-toggle="tooltip" data-placement="bottom" title="Push Nachrichten">
-                                <button type="button" class="btn p-1" data-bs-toggle="modal" data-bs-target="#pnModal">
-                                    <i class="bi bi-bell-fill"></i>
+                                <button type="button" class="btn border bg-white p-1" data-bs-toggle="modal" data-bs-target="#pnModal">
+                                    <i id="bell" class="bi bi-bell-fill"></i>
                                 </button>
                             </div>
                             <div class="col-auto d-flex align-items-center">
                                 <select id="notificationOption" class="form-select-sm btn border bg-white">
-                                    <option>Benachrichtigungen</option>
+                                    <option>Benachrichtigungstöne</option>
                                     <option value="activ">Aktiviert</option>
                                     <option value="inactiv">Deaktiviert</option>
                                     <option value="background">Nur wenn Fenster im Hintergrund</option>
@@ -44,8 +44,8 @@
             <?php foreach ($controller->getData() as $data) {?>
                 <?php if ($data["message"] != "" || $data["image"] != "") { ?>
                     <?php if ($data["username"] == $controller->getUsername()) {?>
-                        <div class="col-3"></div>
-                        <div class="col-9 my-2 p-2">
+                        <div class="col-1 col-md-3"></div>
+                        <div class="col-11 col-md-9 my-2 p-2">
                             <div class="row flex-nowrap">
                                 <div class="col text-end">
                                     <div class="bg-light rounded-3 d-inline-block p-3 pb-0">
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                     <?php } else {?>
-                        <div class="col-9 my-2 p-2">
+                        <div class="col-11 col-md-9 my-2 p-2">
                             <div class="row flex-nowrap">
                                 <div class="col-auto">
                                     <img src="https://i.postimg.cc/1XffnWPL/Profil-Picture.png" width="60" height="60" class="rounded-circle img-fluid">
@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3"></div>
+                        <div class="col-1 col-md-3"></div>
                     <?php } ?>
                 <?php } ?>
             <?php } ?>
@@ -112,10 +112,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <p>Möchtest du Push Benachrichtigungen bekommen, wenn die Website im Hintergrund geöffnet ist?</p>
+                <p id="modalText">Möchtest du Push Benachrichtigungen bekommen, wenn die Website im Hintergrund geöffnet ist?</p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ja</button>
+            <div id="modalFooter" class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="requestNotificationPermission()">Ja</button>
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Nein</button>
             </div>
         </div>

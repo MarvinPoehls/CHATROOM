@@ -38,7 +38,7 @@
     <div class="col-3 d-sm-none d-md-block"></div>
     <div class="col-3 d-sm-none d-md-block"></div>
     <div class="col-12 col-md-6 mb-5">
-        <div class="card text-center mt-4">
+        <div class="card text-center mt-3">
             <h2 class="border-bottom m-2 pb-2">Zufällige Chatrooms<button class="btn float-end" onClick="window.location.reload();"><i class="bi bi-arrow-clockwise"></i></button></h2>
             <?php foreach (Chatroom::getRandomRooms(4) as $room) { ?>
                 <button class="p-2 m-2 btn btn-outline-light text-secondary" onclick="checkUsername('<?= $room ?>')"><h3><?= $room ?></h3></button>

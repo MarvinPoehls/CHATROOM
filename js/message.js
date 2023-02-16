@@ -35,6 +35,9 @@ function checkMessages() {
                         if (data[1] !== thisUser) {
                             data[0] = CryptoJS.AES.decrypt(data[0], $('#encryption').val()).toString(CryptoJS.enc.Utf8);
                             addHtmlMessage(data[0], data[1], data[2]);
+                            if (document.visibilityState === 'hidden') {
+                                sendNotification(data[1], data[0]);
+                            }
                         }
                     }
                 });
@@ -48,12 +51,12 @@ function addHtmlMessage(text, user, image = false) {
 
     if (user === thisUser) {
         let gap = $('<div></div>')
-            .attr("class", "col-3");
+            .attr("class", "col-1 col-md-3");
         messages.append(gap);
     }
 
     let message = $('<div></div>')
-        .attr("class", "col-9 my-2 p-2");
+        .attr("class", "col-11 col-md-9 my-2 p-2");
     messages.append(message);
 
     if (user !== thisUser) {
