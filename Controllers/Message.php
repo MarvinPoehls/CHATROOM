@@ -29,6 +29,7 @@ class Message extends BaseController
         fputcsv($file, $values);
 
         fclose($file);
+
         exit();
     }
 

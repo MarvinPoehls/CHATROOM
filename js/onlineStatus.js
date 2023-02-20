@@ -1,88 +1,77 @@
-let room = $('#room').text();
-let username = $('#username').val().trim();
-let activeUsers = [];
+addOnlineUsers();
 
-setInterval(checkUsers, 1000);
+socket.emit('userOnline', thisUser, room);
+
+socket.on('newOnline' + room, (user) => {
+    addHtmlUser(user);
+});
+
+socket.on('newOffline' + room, (user) => {
+    $('#' + user).remove();
+});
 
 if (window.performance.getEntriesByType('navigation').map((nav) => nav.type).includes('reload')) {
-    addUser();
+
 }
 
 document.addEventListener("visibilitychange", function() {
     if (document.visibilityState === 'visible') {
-        addUser();
+        addUserToDatabase();
+        socket.emit('userOnline', thisUser, room);
     } else {
-        deleteUser();
+        deleteUserFromDatabase();
+        socket.emit('userOffline', thisUser, room);
     }
 });
 
-function deleteUser() {
+function deleteUserFromDatabase() {
     $.ajax({
         url: "index.php",
         type: "POST",
-        data: {controller: "UserController", action: 'delete', username: username, room: room},
+        data: {controller: "UserController", action: 'delete', username: thisUser, room: room},
     });
 }
 
-function addUser() {
+function addUserToDatabase() {
     $.ajax({
         url: "index.php",
         type: "POST",
-        data: {controller: "UserController", action: 'add', username: username, room: room},
+        data: {controller: "UserController", action: 'add', username: thisUser, room: room},
     });
 }
 
-function checkUsers() {
+function addOnlineUsers() {
+    let users = [];
+
     $.ajax({
         url: "index.php",
         type: "POST",
-        data: {controller: 'UserController', action: 'getActive', room: room},
-        success: function(newActiveUsers){
-            newActiveUsers = JSON.parse(newActiveUsers);
-
-            let deleteUser = activeUsers.filter(x => !newActiveUsers.includes(x));
-            let addUser = newActiveUsers.filter(x => !activeUsers.includes(x));
-
-            $.each(deleteUser, function (i, element) {
-                if (element !== "") {
-                    $('#' + element).remove();
-                    activeUsers = removeFromArray(activeUsers, element);
-                }
-            });
-
-            $.each(addUser, function (i, element) {
-                if (element !== "") {
-                    addHtmlUser(element);
-                    activeUsers.push(username);
-                }
-            });
-
-            activeUsers = newActiveUsers;
+        data: {controller: "UserController", action: 'getActive', room: room},
+        success: function (data) {
+            data = JSON.parse(data);
+            console.log(data);
+            if (data[0] !== "") {
+                $.each(data, function (i, user) {
+                    if (user !== thisUser) {
+                        addHtmlUser(user);
+                    }
+                });
+            }
         }
     });
-}
 
-function removeFromArray(arr, value) {
-    let i = 0;
-    while (i < arr.length) {
-        if (arr[i] === value) {
-            arr.splice(i, 1);
-        } else {
-            ++i;
-        }
-    }
-    return arr;
+    return users;
 }
 
 function addHtmlUser(name) {
     let user = $(
-        '<div id="' + name + '" class="row bg-white p-2 m-2 rounded">\n' +
-            '<div class="col-auto">\n ' +
-                '<img src="https://i.postimg.cc/1XffnWPL/Profil-Picture.png" class="d-inline-block rounded-circle" height="40" width="40">\n' +
-            '</div>\n' +
-            '<div class="col">\n' +
-                '<p>' + name + '</p>\n' +
-            '</div>\n' +
+        '<div id="' + name + '" class="row p-2 bg-primary m-2 rounded">\n' +
+        '<div class="col-auto">\n ' +
+        '<img src="https://i.postimg.cc/1XffnWPL/Profil-Picture.png" class="d-inline-block rounded-circle" height="40" width="40">\n' +
+        '</div>\n' +
+        '<div class="col">\n' +
+        '<p class="text-white">' + name + '</p>\n' +
+        '</div>\n' +
         '</div>'
     );
 

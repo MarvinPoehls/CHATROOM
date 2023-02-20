@@ -1,68 +1,90 @@
-let messages = $('#messageCount').val();
+let room = $('#room').text();
 let thisUser = $('#username').val();
 let textInput = $("#message");
-setInterval(checkMessages, 1000);
+let host = document.location.host;
+const socket = io('ws://' + host + ':8080');
+let messageDiv = $('#messages');
+scrollDown();
+
+socket.on('messageTo' + room, (text, username, image) => {
+    text = CryptoJS.AES.decrypt(text, $('#encryption').val()).toString(CryptoJS.enc.Utf8);
+    addHtmlMessage(text, username, image);
+    sendMessageNotification(text, username, image);
+});
 
 textInput.on( "keypress", function (e) {
     if(e.which === 13 && !e.shiftKey) {
         e.preventDefault();
-        addMessage();
+        sendMessage();
     }
 });
 
-function scrollDown() {
-    $('#messages').animate({scrollTop: 1000000}, 'slow');
+function sendMessage() {
+    let text = prepareText(textInput.val());
+    let file = $("#room").text() + '.csv';
+    let image = $('#imageInput').prop('files')[0];
+
+    if (image != null) {
+        let reader = new FileReader();
+        reader.readAsDataURL(image);
+        reader.onload = function () {
+            image = reader.result;
+
+            console.log('Image');
+            addMessageToChatlog(text, image, file);
+            socket.emit('messageToServer', text, thisUser, image, room);
+            scrollDown();
+        };
+    } else if (text !== "") {
+        addMessageToChatlog(text, image, file);
+        socket.emit('messageToServer', text, thisUser, image, room);
+        scrollDown();
+    }
 }
 
-function checkMessages() {
-    let room = $('#room').text();
+function prepareText(text) {
+    text = text.trim();
+    text = $.parseHTML(text);
+    text = $(text).text();
 
+    if (text === "") {
+        return text;
+    }
+
+    text = text.replace(/\n/g, '<br>');
+
+    let password = $('#encryption').val();
+    text = CryptoJS.AES.encrypt(text, password).toString();
+
+    return text;
+}
+
+function addMessageToChatlog(text, image, file) {
     $.ajax({
         url: "index.php",
         type: "POST",
-        data: {controller:'Message', action:'countMessages', room: room},
-        success: function(newMessages){
-            let file = $('#room').text() + ".csv";
-
-            while (newMessages > messages) {
-                messages++;
-                $.ajax({
-                    url: "index.php",
-                    type: "POST",
-                    data: {controller: 'Message', action: 'getRow', row: messages, file: file},
-                    success: function(data){
-                        data = JSON.parse(data);
-                        if (data[1] !== thisUser) {
-                            data[0] = CryptoJS.AES.decrypt(data[0], $('#encryption').val()).toString(CryptoJS.enc.Utf8);
-                            addHtmlMessage(data[0], data[1], data[2]);
-                            if (document.visibilityState === 'hidden') {
-                                sendNotification(data[1], data[0]);
-                            }
-                        }
-                    }
-                });
-            }
+        data: {controller: "Message", action:'addMessage', text: text, image: image, file: file, user: thisUser},
+        success: function () {
+            clearInputs();
         }
     });
 }
 
 function addHtmlMessage(text, user, image = false) {
-    let messages = $('#messages');
-
     if (user === thisUser) {
         let gap = $('<div></div>')
             .attr("class", "col-1 col-md-3");
-        messages.append(gap);
+        messageDiv.append(gap);
     }
 
     let message = $('<div></div>')
         .attr("class", "col-11 col-md-9 my-2 p-2");
-    messages.append(message);
+    messageDiv.append(message);
 
     if (user !== thisUser) {
         let gap = $('<div></div>')
             .attr("class", "col-3");
-        messages.append(gap);
+        messageDiv.append(gap);
     }
 
     let row = $('<div></div>')
@@ -86,7 +108,7 @@ function addHtmlMessage(text, user, image = false) {
         row.append(textCol);
 
         let textDiv = $("<div></div>")
-            .attr("class", "bg-primary text-white rounded-3 d-inline-block p-3 pb-0");
+            .attr("class", "bg-primary text-white rounded-3 d-inline-block p-2");
         textCol.append(textDiv);
 
         let header = $('<p></p>')
@@ -98,14 +120,16 @@ function addHtmlMessage(text, user, image = false) {
             let picture = $('<img>')
                 .attr('src', image)
                 .attr('width', '200')
-                .attr('class','mb-2 img-fluid rounded');
+                .attr('class','img-fluid rounded');
             textDiv.append(picture);
         }
 
-        let textParagraph = $("<p></p>")
-            .attr('class', 'text-break')
-            .html(text);
-        textDiv.append(textParagraph);
+        if (text !== "") {
+            let textParagraph = $("<p></p>")
+                .attr('class', 'text-break mb-0')
+                .html(text);
+            textDiv.append(textParagraph);
+        }
 
         playNotificationSound();
     } else {
@@ -114,21 +138,23 @@ function addHtmlMessage(text, user, image = false) {
         row.append(textCol);
 
         let textDiv = $("<div></div>")
-            .attr("class", "bg-light rounded-3 d-inline-block p-3 pb-0");
+            .attr("class", "bg-light rounded-3 d-inline-block p-2");
         textCol.append(textDiv);
 
         if (image) {
             let picture = $('<img>')
                 .attr('src', image)
                 .attr('width', '200')
-                .attr('class','mb-2 img-fluid rounded');
+                .attr('class','img-fluid rounded');
             textDiv.append(picture);
         }
 
-        let textParagraph = $("<p></p>")
-            .attr('class', 'text-start')
-            .html(text);
-        textDiv.append(textParagraph);
+        if (text !== "") {
+            let textParagraph = $("<p></p>")
+                .attr('class', 'text-start mb-0')
+                .html(text);
+            textDiv.append(textParagraph);
+        }
 
         let imgCol = $('<div></div>')
             .attr('class', 'col-auto text-end');
@@ -141,6 +167,38 @@ function addHtmlMessage(text, user, image = false) {
             .attr("class", "d-inline-block rounded-circle");
         imgCol.append(img);
     }
+}
+
+function clearInputs(clearText = true) {
+    if (clearText) {
+        textInput.val("");
+    }
+
+    let imageInput = $('#imageInput');
+    imageInput.val('');
+    $('#textCol').attr('class', 'col');
+    $('#inputIcon').attr('class', 'bi bi-paperclip text-white');
+    $('#inputLabel').attr('for', 'imageInput');
+    $('#buttonCol').attr('class', 'col-auto float-end');
+    $('#imageInputCol').attr('class', 'col d-none');
+}
+
+function imageInput() {
+    let image = $('#imageInput').val();
+    image = image.replace(/^.*\\/, "");
+
+    if (image !== "") {
+        $('#textCol').attr('class', 'col-7 col-sm-10');
+        $('#inputIcon').attr('class', 'bi bi-x text-white');
+        $('#inputLabel').attr('for', 'deleteInput');
+        $('#buttonCol').attr('class', 'col float-end p-0');
+        $('#imageInputCol').attr('class', 'col-4 d-block')
+        $('#fileName').val(image);
+    }
+}
+
+function scrollDown() {
+    messageDiv.animate({scrollTop: 1000000});
 }
 
 function playNotificationSound() {
@@ -160,71 +218,5 @@ function playNotificationSound() {
             break;
         default:
             audio.play();
-    }
-}
-
-function addMessage() {
-    let text = textInput.val().trim();
-    text = $.parseHTML(text);
-    text = $(text).text();
-    text = text.replace(/\n/g, '<br>');
-    let password = $('#encryption').val();
-    text = CryptoJS.AES.encrypt(text, password).toString();
-
-    let file = $("#file").val();
-    let image = $('#imageInput').prop('files')[0];
-
-    if (image != null) {
-        let reader = new FileReader();
-        reader.readAsDataURL(image);
-        reader.onload = function () {
-            image = reader.result;
-            $.ajax({
-                url: "index.php",
-                type: "POST",
-                data: {controller: "Message", action:'addMessage', text: text, image: image, file: file, user: username},
-                success: function(){
-                    textInput.val("");
-                    clearImageInput();
-                    text = CryptoJS.AES.decrypt(text, $('#encryption').val()).toString(CryptoJS.enc.Utf8);
-                    addHtmlMessage(text, username, image);
-                }
-            });
-        };
-    } else if (image != null || text != null) {
-        $.ajax({
-            url: "index.php",
-            type: "POST",
-            data: {controller: "Message", action:'addMessage', text: text, image: image, file: file, user: username},
-            success: function(){
-                textInput.val("");
-                clearImageInput();
-                text = CryptoJS.AES.decrypt(text, $('#encryption').val()).toString(CryptoJS.enc.Utf8);
-                addHtmlMessage(text, username, image);
-            }
-        });
-    }
-    scrollDown();
-}
-
-function clearImageInput() {
-    let imageInput = $('#imageInput');
-    imageInput.val('');
-    $('#inputIcon').attr('class', 'bi bi-paperclip');
-    $('#inputLabel').attr('for', 'imageInput');
-    $('#buttonCol').attr('class', 'col-auto');
-    $('#imageInputCol').attr('class', 'col d-none');
-}
-
-function imageInput() {
-    let image = $('#imageInput').val();
-    image = image.replace(/^.*\\/, "");
-
-    if (image !== "") {
-        $('#inputIcon').attr('class', 'bi bi-x');
-        $('#inputLabel').attr('for', 'deleteInput');
-        $('#buttonCol').attr('class', 'col-4');
-        $('#imageInputCol').attr('class', 'col');
-        $('#fileName').val(image);
     }
 }

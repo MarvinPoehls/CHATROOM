@@ -1,14 +1,23 @@
-<div class="row flex-nowrap bg-white h-100 overflow-hidden">
+<div class="row flex-nowrap h-100 overflow-hidden bg-room">
     <div class="col-auto px-0">
-        <div id="sidebar" class="collapse border-end vh-100 bg-light">
+        <div id="sidebar" class="collapse overflow-auto vh-100 bg-blue position-absolute z-top">
             <div class="p-2">
-                <h4>Aktive Teilnehmer</h4>
+                <div class="row p-0">
+                    <div class="col text-white">
+                        <h4>Aktive Teilnehmer</h4>
+                    </div>
+                    <div class="col-auto">
+                        <button data-bs-target="#sidebar" data-bs-toggle="collapse" class="btn btn-light rounded-3 p-1">
+                            <i class="bi bi-list"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div id="activeUser"></div>
         </div>
     </div>
     <div class="col">
-        <div class="row bg-light border-bottom p-1">
+        <div class="row bg-dark-blue p-1 shadow">
             <div class="col">
                 <div class="row">
                     <div class="col-auto d-flex align-items-center">
@@ -16,7 +25,7 @@
                             <i class="bi bi-list"></i>
                         </button>
                     </div>
-                    <div class="col-lg-auto col-md-6 col-auto">
+                    <div class="col-lg-auto col-md-6 col-auto text-white">
                         <h2>Chatroom: <span id="room"><?= $controller->getName(); ?></span></h2>
                     </div>
                     <div class="col"></div>
@@ -40,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <div class="row bg-white p-4 overflow-auto position-relative" id="messages" style="height: 80%">
+        <div class="row p-4 overflow-auto position-relative d-flex align-items-start mh-80" id="messages">
             <?php foreach ($controller->getData() as $data) {?>
                 <?php if ($data["message"] != "" || $data["image"] != "") { ?>
                     <?php if ($data["username"] == $controller->getUsername()) {?>
@@ -48,11 +57,11 @@
                         <div class="col-11 col-md-9 my-2 p-2">
                             <div class="row flex-nowrap">
                                 <div class="col text-end">
-                                    <div class="bg-light rounded-3 d-inline-block p-3 pb-0">
+                                    <div class="bg-light rounded-3 d-inline-block p-2">
                                         <?php if ($data["image"] != "") { ?>
-                                            <img src="<?= $data["image"] ?>" width="200" class="mb-2 img-fluid rounded">
+                                            <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded">
                                         <?php } ?>
-                                        <p class="text-start text-break decode"><?= $data["message"] ?></p>
+                                        <p class="text-start text-break mb-0 decode"><?= $data["message"] ?></p>
                                     </div>
                                 </div>
                                 <div class="col-auto text-end">
@@ -67,12 +76,12 @@
                                     <img src="https://i.postimg.cc/1XffnWPL/Profil-Picture.png" width="60" height="60" class="rounded-circle img-fluid">
                                 </div>
                                 <div class="col">
-                                    <div class="bg-primary rounded-3 text-white d-inline-block p-3 pb-0">
+                                    <div class="bg-primary rounded-3 text-white d-inline-block p-2">
                                         <p class="fw-bold mb-1"><?= $data["username"] ?></p>
                                         <?php if ($data["image"] != "") { ?>
-                                            <img src="<?= $data["image"] ?>" width="200" class="mb-2 img-fluid rounded">
+                                            <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded">
                                         <?php } ?>
-                                        <p class="text-break decode"><?= $data["message"] ?></p>
+                                        <p class="text-break mb-0 decode"><?= $data["message"] ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -82,26 +91,25 @@
                 <?php } ?>
             <?php } ?>
         </div>
-        <div class="row bg-white p-4">
-            <div class="col">
-                <textarea type="text" class="form-control" id="message" rows="1" cols="10" style="resize: none;"></textarea>
-                <input type="hidden" id="file" value="<?= $controller->getName() . '.csv'; ?>">
-                <input type="hidden" id="encryption" value="<?= $controller->getEncryption() ?>">
+        <div class="row p-4 position-fixed bottom-0 w-100">
+            <div class="col" id="textCol">
+                <textarea type="text" class="form-control resize-none" id="message" rows="1" cols="10"></textarea>
+                <input type="hidden" id="encryption" value="<?= $controller->getEncryption(); ?>">
                 <input type="hidden" id="username" value="<?= $controller->getUsername(); ?>">
                 <input type="hidden" id="messageCount" value="<?= $controller->getMessageCount(); ?>">
             </div>
-            <div class="col-auto" id="buttonCol">
+            <div class="col-auto float-end" id="buttonCol">
                 <div class="row">
                     <div class="col d-none" id="imageInputCol">
-                        <input type="text" class="form-control" id="fileName" disabled>
+                        <input type="text" class="form-control d-inline-block" id="fileName" disabled>
                     </div>
                     <div class="col-auto p-0">
                         <label id="inputLabel" for="imageInput" class="btn" role="button">
-                            <i class="bi bi-paperclip" id="inputIcon"></i>
+                            <i class="bi bi-paperclip text-white" id="inputIcon"></i>
                         </label>
-                        <button type="button" class="btn btn-primary rounded-circle ms-3" onclick="addMessage()"><i class="bi bi-send-fill"></i></button>
+                        <button type="button" class="btn btn-primary shadow-lg rounded-circle" onclick="sendMessage()"><i class="bi bi-send-fill"></i></button>
                         <input type="file" class="d-none" id="imageInput" onchange="imageInput()" accept="image/png, image/jpeg image/gif image/svg">
-                        <input class="d-none" id="deleteInput" onclick="clearImageInput()">
+                        <input class="d-none" id="deleteInput" onclick="clearInputs(false)">
                     </div>
                 </div>
             </div>

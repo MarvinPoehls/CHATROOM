@@ -40,7 +40,7 @@ class Chatroom extends BaseModel
         }
     }
 
-    public function getMembers()
+    public function getMembers(): array
     {
         $members = [];
         $sql = "SELECT user.name FROM chatroom

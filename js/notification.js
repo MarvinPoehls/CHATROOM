@@ -46,12 +46,19 @@ function requestNotificationPermission() {
     });
 }
 
-function sendNotification(title, body){
-    if (Notification.permission === 'granted') {
-        let options = {
-            body: body,
-            icon: 'https://i.postimg.cc/1XffnWPL/Profil-Picture.png',
-        };
-        new Notification(title, options);
+function sendMessageNotification(text, user, image){
+    if (document.visibilityState === 'hidden') {
+        if (image !== null) {
+            text = "[Bild] " + text;
+        }
+
+        if (Notification.permission === 'granted') {
+            let options = {
+                body: text,
+                icon: 'https://i.postimg.cc/1XffnWPL/Profil-Picture.png',
+            };
+            new Notification(user, options);
+        }
+
     }
 }
