@@ -49,7 +49,6 @@ function addOnlineUsers() {
         data: {controller: "UserController", action: 'getActive', room: room},
         success: function (data) {
             data = JSON.parse(data);
-            console.log(data);
             if (data[0] !== "") {
                 $.each(data, function (i, user) {
                     if (user !== thisUser) {
@@ -65,9 +64,9 @@ function addOnlineUsers() {
 
 function addHtmlUser(name) {
     let user = $(
-        '<div id="' + name + '" class="row p-2 bg-primary m-2 rounded">\n' +
+        '<div id="' + name + '" class="row p-2 bg-dark-blue m-2 rounded">\n' +
         '<div class="col-auto">\n ' +
-        '<img src="https://i.postimg.cc/1XffnWPL/Profil-Picture.png" class="d-inline-block rounded-circle" height="40" width="40">\n' +
+        '<img src="https://www.linkpicture.com/q/ProfilPictureDark.png" class="d-inline-block rounded-circle" height="40" width="40">\n' +
         '</div>\n' +
         '<div class="col">\n' +
         '<p class="text-white">' + name + '</p>\n' +

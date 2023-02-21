@@ -30,7 +30,6 @@ function sendMessage() {
         reader.onload = function () {
             image = reader.result;
 
-            console.log('Image');
             addMessageToChatlog(text, image, file);
             socket.emit('messageToServer', text, thisUser, image, room);
             scrollDown();
@@ -97,7 +96,7 @@ function addHtmlMessage(text, user, image = false) {
         row.append(imgCol);
 
         let img = $('<img>')
-            .attr("src", "https://i.postimg.cc/1XffnWPL/Profil-Picture.png")
+            .attr("src", "https://www.linkpicture.com/q/ProfilPictureDark.png")
             .attr("width", 60)
             .attr("height", 60)
             .attr("class", "img-fluid rounded-circle");
@@ -161,7 +160,7 @@ function addHtmlMessage(text, user, image = false) {
         row.append(imgCol);
 
         let img = $('<img>')
-            .attr("src", "https://i.postimg.cc/1XffnWPL/Profil-Picture.png")
+            .attr("src", "https://www.linkpicture.com/q/ProfilPictureDark.png")
             .attr("width", 60)
             .attr("height", 60)
             .attr("class", "d-inline-block rounded-circle");
@@ -192,7 +191,7 @@ function imageInput() {
         $('#inputIcon').attr('class', 'bi bi-x text-white');
         $('#inputLabel').attr('for', 'deleteInput');
         $('#buttonCol').attr('class', 'col float-end p-0');
-        $('#imageInputCol').attr('class', 'col-4 d-block')
+        $('#imageInputCol').attr('class', 'col d-block')
         $('#fileName').val(image);
     }
 }

@@ -36,7 +36,6 @@ function checkLoad() {
     let username = usernameInput.val().trim();
     let room = roomInput.val().trim();
 
-    console.log('Username: ' + username + '\nRoom: ' + room);
     if (room !== "" && username !== "") {
         $.ajax({
             url: 'index.php',

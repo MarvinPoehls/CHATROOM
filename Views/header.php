@@ -23,7 +23,7 @@
                 <div class="navbar" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <?php if ($controller->getTitle() !== "Foyer") { ?>
-                            <li class="nav-item text-end">
+                            <li class="nav-item text-end me-2">
                                 <a class="nav-link ms-4 p-0" href="index.php?username=<?= $controller->getUsername() ?>">
                                     <i class="bi bi-arrow-left-circle-fill text-white"></i>
                                 </a>
