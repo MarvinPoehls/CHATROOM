@@ -1,5 +1,5 @@
 addOnlineUsers();
-
+addUserToDatabase();
 socket.emit('userOnline', thisUser, room);
 
 socket.on('newOnline' + room, (user) => {
@@ -10,16 +10,16 @@ socket.on('newOffline' + room, (user) => {
     $('#' + user).remove();
 });
 
-if (window.performance.getEntriesByType('navigation').map((nav) => nav.type).includes('reload')) {
-
-}
+$( window ).on('unload', function() {
+    if (!window.performance.getEntriesByType('navigation').map((nav) => nav.type).includes('reload')) {
+        deleteUserFromDatabase();
+    }
+});
 
 document.addEventListener("visibilitychange", function() {
     if (document.visibilityState === 'visible') {
-        addUserToDatabase();
         socket.emit('userOnline', thisUser, room);
     } else {
-        deleteUserFromDatabase();
         socket.emit('userOffline', thisUser, room);
     }
 });
@@ -64,12 +64,12 @@ function addOnlineUsers() {
 
 function addHtmlUser(name) {
     let user = $(
-        '<div id="' + name + '" class="row p-2 bg-dark-blue m-2 rounded">\n' +
+        '<div id="' + name + '" class="row p-md-2 p-0 bg-dark-blue m-md-2 m-1 rounded justify-content-center">\n' +
         '<div class="col-auto">\n ' +
-        '<img src="https://www.linkpicture.com/q/ProfilPictureDark.png" class="d-inline-block rounded-circle" height="40" width="40">\n' +
+        '<img src="https://www.linkpicture.com/q/ProfilPictureDark.png" class="d-inline-block rounded-circle img-fluid" height="40" width="40">\n' +
         '</div>\n' +
-        '<div class="col">\n' +
-        '<p class="text-white">' + name + '</p>\n' +
+        '<div class="col-12 justify-content-center d-block p-0">\n' +
+        '<p class="text-white text-center responsive-text m-0">' + name + '</p>\n' +
         '</div>\n' +
         '</div>'
     );

@@ -46,7 +46,7 @@ function requestNotificationPermission() {
     });
 }
 
-function sendMessageNotification(text, user, image){
+function sendMessageNotification(text, user, image, time){
     if (document.visibilityState === 'hidden') {
         if (image !== null) {
             text = "[Bild] " + text;
@@ -54,7 +54,7 @@ function sendMessageNotification(text, user, image){
 
         if (Notification.permission === 'granted') {
             let options = {
-                body: text,
+                body: text + "\n" + time,
                 icon: 'https://i.postimg.cc/1XffnWPL/Profil-Picture.png',
             };
             new Notification(user, options);

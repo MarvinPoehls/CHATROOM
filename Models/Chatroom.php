@@ -27,6 +27,18 @@ class Chatroom extends BaseModel
         return $rooms;
     }
 
+    public static function getRandomRoomsJson($amount = 4): array
+    {
+        $sql = "SELECT name FROM chatroom ORDER BY RAND() LIMIT " . $amount;
+        $result = DatabaseConnection::executeMysqlQuery($sql);
+        $rooms = [];
+        while($row = mysqli_fetch_row($result)) {
+            $rooms[] = $row[0];
+        }
+        echo json_encode($rooms);
+        exit();
+    }
+
     public function isDuplicate()
     {
         $controller = new BaseController();

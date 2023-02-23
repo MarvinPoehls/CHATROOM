@@ -1,30 +1,18 @@
 <div class="row flex-nowrap h-100 overflow-hidden bg-room">
-    <div class="col-auto px-0">
-        <div id="sidebar" class="collapse collapse-horizontal overflow-auto h-96 bg-blue position-absolute z-top">
-            <div class="p-2">
-                <div class="row p-0">
-                    <div class="col text-light overflow-hidden">
-                        <h4>Aktive Teilnehmer</h4>
-                    </div>
-                    <div class="col-auto">
-                        <button data-bs-target="#sidebar" data-bs-toggle="collapse" class="btn btn-light rounded-3 p-1">
-                            <i class="bi bi-list"></i>
-                        </button>
-                    </div>
+    <div id="sidebar" class="overflow-x-hidden overflow-y-auto h-96 w-15 bg-blue z-top flex-nowrap p-0">
+        <div class="p-md-2">
+            <div class="row p-0">
+                <div class="col text-light overflow-hidden pt-1">
+                    <h4 class="w-auto responsive-header text-center">Aktive Teilnehmer</h4>
                 </div>
             </div>
-            <div id="activeUser"></div>
         </div>
+        <div id="activeUser"></div>
     </div>
     <div class="col">
         <div class="row bg-darker-blue p-1 shadow">
             <div class="col">
                 <div class="row">
-                    <div class="col-auto d-flex align-items-center">
-                        <button data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-dark bg-white">
-                            <i class="bi bi-list"></i>
-                        </button>
-                    </div>
                     <div class="col-lg-auto col-md-6 col-auto text-light">
                         <h2>Chatroom: <span id="room"><?= $controller->getName(); ?></span></h2>
                     </div>
@@ -37,19 +25,22 @@
                                 </button>
                             </div>
                             <div class="col-auto d-flex align-items-center">
-                                <select id="notificationOption" class="form-select-sm btn border bg-light">
+                                <select id="notificationOption" class="form-select-sm btn border bg-light" style="width: 170px">
                                     <option>Benachrichtigungstöne</option>
                                     <option value="activ">Aktiviert</option>
                                     <option value="inactiv">Deaktiviert</option>
                                     <option value="background">Nur wenn Fenster im Hintergrund</option>
                                 </select>
                             </div>
+                            <div class="col-auto d-flex align-items-center">
+                                <a href="index.php?username=<?= $controller->getUsername() ?>" class="btn btn-danger"><span class="d-none d-md-inline">Raum Verlassen</span> <i class="bi bi-door-open-fill"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row p-4 overflow-auto position-relative d-flex align-items-start mh-69 mh-sm-80" id="messages">
+        <div class="row px-1 px-sm-4 overflow-auto position-relative d-flex align-items-start mh-69 mh-sm-80" id="messages">
             <?php foreach ($controller->getData() as $data) {?>
                 <?php if ($data["message"] != "" || $data["image"] != "") { ?>
                     <?php if ($data["username"] == $controller->getUsername()) {?>
@@ -62,6 +53,7 @@
                                             <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded">
                                         <?php } ?>
                                         <p class="text-start text-break mb-0 decode"><?= $data["message"] ?></p>
+                                        <p class="m-0 float-start text-muted"><?= $data["time"] ?></p>
                                     </div>
                                 </div>
                                 <div class="col-auto text-end">
@@ -82,6 +74,7 @@
                                             <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded">
                                         <?php } ?>
                                         <p class="text-break mb-0 decode"><?= $data["message"] ?></p>
+                                        <p class="m-0 float-end"><?= $data["time"] ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +84,7 @@
                 <?php } ?>
             <?php } ?>
         </div>
-        <div class="row p-4 position-fixed bottom-0 w-100">
+        <div class="row p-4 position-fixed bottom-0 w-85">
             <div class="col" id="textCol">
                 <textarea type="text" class="form-control resize-none" id="message" rows="1" cols="10"></textarea>
                 <input type="hidden" id="encryption" value="<?= $controller->getEncryption(); ?>">
@@ -132,3 +125,4 @@
 <script src="<?= $projectPath ?>js/decodeMessages.js"></script>
 <script src="<?= $projectPath ?>js/message.js"></script>
 <script src="<?= $projectPath ?>js/onlineStatus.js"></script>
+<script src="<?= $projectPath ?>js/room.js"></script>

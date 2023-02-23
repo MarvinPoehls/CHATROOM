@@ -10,8 +10,8 @@ io.on('connection', (socket) => {
         console.log('User "'+ socket.id +'" disconnected.');
     });
 
-    socket.on('messageToServer', (text, username, image, room) => {
-        io.emit('messageTo' + room, text, username, image);
+    socket.on('messageToServer', (text, username, image, room, time) => {
+        io.emit('messageTo' + room, text, username, image, time);
     });
 
     socket.on('userOnline', (user, room) => {

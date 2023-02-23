@@ -42,8 +42,40 @@
     .mh-sm-80 {max-height:80%}
 }
 
+.w-85 {
+    width: 85% !important;
+}
+
+.w-15 {
+    width: 15% !important;
+}
+
+.opacity-100 {
+    --bs-bg-opacity: 1;
+}
+
+.opacity-75 {
+    --bs-bg-opacity: .75;
+}
+
+.opacity-50 {
+    --bs-bg-opacity: .5;
+}
+
+.opacity-25 {
+    --bs-bg-opacity: .25;
+}
+
 .resize-none {
     resize: none;
+}
+
+.overflow-x-hidden {
+    overflow-x: hidden !important;
+}
+
+.overflow-y-auto {
+    overflow-y: auto !important;
 }
 
 .z-1 {
@@ -86,4 +118,48 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #5a5894;
+}
+
+.responsive-text {font-size:0.7rem;} /*1rem = 16px*/
+
+/* Small devices (landscape phones, 544px and up) */
+@media (min-width: 544px) {
+    .responsive-text {font-size:0.7rem;} /*1rem = 16px*/
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    .responsive-text {font-size:0.8rem;} /*1rem = 16px*/
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .responsive-text {font-size:1rem;} /*1rem = 16px*/
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .responsive-text {font-size:1rem;} /*1rem = 16px*/
+}
+
+.responsive-header {font-size:8px;} /*1rem = 16px*/
+
+/* Small devices (landscape phones, 544px and up) */
+@media (min-width: 544px) {
+    .responsive-header {font-size:10px;} /*1rem = 16px*/
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    .responsive-header {font-size:12px;} /*1rem = 16px*/
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .responsive-header {font-size:16px;} /*1rem = 16px*/
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .responsive-header {font-size:20px;} /*1rem = 16px*/
 }

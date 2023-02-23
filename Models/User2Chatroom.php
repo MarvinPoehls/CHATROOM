@@ -1,5 +1,6 @@
 <?php
 
+
 class User2Chatroom extends BaseModel
 {
     protected $table = "user2chatroom";
@@ -46,7 +47,20 @@ class User2Chatroom extends BaseModel
 
     public static function addConnection($userId, $roomId)
     {
-        $sql = "INSERT INTO user2chatroom (user_id, chatroom_id) VALUES ('".$userId."','".$roomId."')";
-        DatabaseConnection::executeMysqlQuery($sql);
+        if (!self::isDuplicate($userId, $roomId)) {
+            $sql = "INSERT INTO user2chatroom (user_id, chatroom_id) VALUES ('".$userId."','".$roomId."')";
+            DatabaseConnection::executeMysqlQuery($sql);
+        }
+    }
+
+    protected static function isDuplicate($userId, $roomId): bool
+    {
+        $sql = "SELECT * FROM user2chatroom WHERE user_id = ". $userId . "AND chatroom_id = ". $roomId;
+        $result = DatabaseConnection::executeMysqlQuery($sql);
+        if ($row = mysqli_fetch_row($result)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

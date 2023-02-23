@@ -12,24 +12,16 @@
         <link rel="stylesheet" href="<?= $projectPath ?>css/styles.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.0/dist/index.bundle.min.js"></script>
     </head>
     <body class="h-100 overflow-hidden">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0">
             <div class="container-fluid">
                 <a class="navbar-brand m-2 d-flex align-items-center" href="index.php">
-                    <img src="https://i.postimg.cc/rwnHZBzV/Chatroom.png" width="30" height="30" class="" alt="logo">
+                    <img src="https://i.postimg.cc/rwnHZBzV/Chatroom.png" width="30" height="30" alt="logo">
                     <span class="ms-1">Chatroom</span>
                 </a>
                 <div class="navbar" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <?php if ($controller->getTitle() !== "Foyer") { ?>
-                            <li class="nav-item text-end me-2">
-                                <a class="nav-link ms-4 p-0" href="index.php?username=<?= $controller->getUsername() ?>">
-                                    <i class="bi bi-arrow-left-circle-fill text-white"></i>
-                                </a>
-                            </li>
-                        <?php } ?>
-                    </ul>
                 </div>
             </div>
         </nav>

@@ -1,6 +1,6 @@
 <?php
     $data = [
-    "path" => "http://localhost/Chatroom/",
+    "path" => "http://192.168.2.187/chatroom/",
     "servername" => "localhost",
     "username" => "root",
     "password" => "",

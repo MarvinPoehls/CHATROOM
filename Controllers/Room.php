@@ -50,7 +50,7 @@ class Room extends BaseController
         $file = fopen("chatlogs/".$this->chatroom->getChatlog(), "r");
         fgetcsv($file);
         while($row = fgetcsv($file)) {
-            $data[] = array("message" => $row[0], "username" => $row[1], "image" => $row[2]);
+            $data[] = array("message" => $row[0], "username" => $row[1], "image" => $row[2], "time" => $row[3]);
         }
         fclose($file);
         return $data;
