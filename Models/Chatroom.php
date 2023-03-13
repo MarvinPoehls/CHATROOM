@@ -3,10 +3,9 @@
 class Chatroom extends BaseModel
 {
     protected $table = "chatroom";
-    protected $columns = ["id", "name", "chatlog", "encryption"];
+    protected $columns = ["id", "name", "encryption"];
     protected $id = "";
     protected $name = "";
-    protected $chatlog = "";
     protected $encryption = "";
 
     public function __construct($id = false)
@@ -95,16 +94,6 @@ class Chatroom extends BaseModel
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public function getChatlog(): string
-    {
-        return $this->chatlog;
-    }
-
-    public function setChatlog(string $chatlog)
-    {
-        $this->chatlog = $chatlog;
     }
 
     public function getEncryption(): string

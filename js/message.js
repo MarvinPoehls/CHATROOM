@@ -2,7 +2,7 @@ let room = $('#room').text();
 let thisUser = $('#username').val();
 let textInput = $("#message");
 let host = document.location.host;
-const socket = io('ws://' + host + ':8080');
+const socket = io('ws://' + host + ':8080', {closeOnBeforeunload: false});
 let messageDiv = $('#messages');
 scrollDown();
 
@@ -22,10 +22,9 @@ textInput.on( "keypress", function (e) {
 
 function sendMessage() {
     let text = prepareText(textInput.val());
-    let file = $("#room").text() + '.csv';
     let image = $('#imageInput').prop('files')[0];
-    let date = new Date();
-    let time = date.getHours() + ":" + date.getMinutes();
+    let time = getTime();
+
 
     if (image != null) {
         let reader = new FileReader();
@@ -33,15 +32,30 @@ function sendMessage() {
         reader.onload = function () {
             image = reader.result;
 
-            addMessageToChatlog(text, image, file, time);
+            addMessageToDatabase(text, image);
             socket.emit('messageToServer', text, thisUser, image, room, time);
             scrollDown();
         };
     } else if (text !== "") {
-        addMessageToChatlog(text, image, file, time);
+        addMessageToDatabase(text, image);
         socket.emit('messageToServer', text, thisUser, image, room, time);
         scrollDown();
     }
+}
+
+function getTime() {
+    let date = new Date();
+    let minutes = date.getMinutes().toString();
+    let hours = date.getHours().toString();
+
+    if (minutes.length === 1) {
+        minutes = "0" + minutes
+    }
+    if (hours.length === 1) {
+        hours = "0" + hours
+    }
+
+    return hours + ":" + minutes;
 }
 
 function prepareText(text) {
@@ -61,11 +75,11 @@ function prepareText(text) {
     return text;
 }
 
-function addMessageToChatlog(text, image, file, time) {
+function addMessageToDatabase(text, image) {
     $.ajax({
         url: "index.php",
         type: "POST",
-        data: {controller: "Message", action:'addMessage', text: text, image: image, file: file, user: thisUser, time: time},
+        data: {controller: "MessageController", action:'addMessage', text: text, image: image, user: thisUser, room: room},
         success: function () {
             clearInputs();
         }

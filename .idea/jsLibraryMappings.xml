@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{bs5-lightbox, crypto-js, socket.io}" />
+    <file url="PROJECT" libraries="{bs5-lightbox, crypto-js, jquery-color, jqueryui, socket.io}" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>

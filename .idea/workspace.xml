@@ -2,24 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97eea95a-4297-4f19-8341-2435f8136cbc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/js/foyer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/room.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Message.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/index.bundle.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Chatroom.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Chatroom.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b565787c-d3c1-4e8c-b797-f0c81efd9939.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b565787c-d3c1-4e8c-b797-f0c81efd9939.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Message.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/CreateRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CreateRoom.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/MessageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/Chatroom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Chatroom.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/User2Chatroom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/User2Chatroom.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/foyer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/foyer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/room.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/checkInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/checkInput.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/notification.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/notification.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/onlineStatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/onlineStatus.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nodeJs/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/nodeJs/index.js" afterDir="false" />
     </list>
@@ -58,7 +56,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.14.0&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.13.0&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/xampp/htdocs/Chatroom/audio&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/marvinpoehls/Desktop/Berufsschule/LF 5/Java Test Dateien/ArktikelProjekt&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
@@ -78,6 +76,7 @@
       <recent name="C:\xampp\xampp\htdocs\Chatroom\Views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\xampp\htdocs\Chatroom\js" />
       <recent name="C:\xampp\xampp\htdocs\Chatroom" />
       <recent name="C:\xampp\xampp\htdocs\Chatroom\nodeJs" />
       <recent name="C:\xampp\xampp\htdocs\Chatroom\audio" />
@@ -116,7 +115,11 @@
       <workItem from="1676884148861" duration="21610000" />
       <workItem from="1676970965228" duration="5031000" />
       <workItem from="1677056790502" duration="17854000" />
-      <workItem from="1677143125371" duration="698000" />
+      <workItem from="1677143125371" duration="21759000" />
+      <workItem from="1677231830616" duration="11860000" />
+      <workItem from="1677834300443" duration="13000" />
+      <workItem from="1677836983558" duration="47000" />
+      <workItem from="1678698916885" duration="13829000" />
     </task>
     <servers />
   </component>

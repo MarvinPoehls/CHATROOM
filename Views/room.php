@@ -42,7 +42,7 @@
         </div>
         <div class="row px-1 px-sm-4 overflow-auto position-relative d-flex align-items-start mh-69 mh-sm-80" id="messages">
             <?php foreach ($controller->getData() as $data) {?>
-                <?php if ($data["message"] != "" || $data["image"] != "") { ?>
+                <?php if (($data["message"] != "" || $data["image"] != "") && $controller->isMessageSendAfterJoin($data["time"])) { ?>
                     <?php if ($data["username"] == $controller->getUsername()) {?>
                         <div class="col-1 col-md-3"></div>
                         <div class="col-11 col-md-9 my-2 p-2">
@@ -50,7 +50,9 @@
                                 <div class="col text-end">
                                     <div class="bg-light rounded-3 d-inline-block p-2">
                                         <?php if ($data["image"] != "") { ?>
-                                            <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded">
+                                            <a href="<?= $data["image"] ?>" data-toggle="lightbox">
+                                                <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded">
+                                            </a>
                                         <?php } ?>
                                         <p class="text-start text-break mb-0 decode"><?= $data["message"] ?></p>
                                         <p class="m-0 float-start text-muted"><?= $data["time"] ?></p>
@@ -71,7 +73,9 @@
                                     <div class="bg-primary rounded-3 text-white d-inline-block p-2">
                                         <p class="fw-bold mb-1"><?= $data["username"] ?></p>
                                         <?php if ($data["image"] != "") { ?>
-                                            <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded">
+                                            <a href="<?= $data["image"] ?>" data-toggle="lightbox" data-gallery="<?= $controller->getName() ?>-gallery">
+                                                <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded">
+                                            </a>
                                         <?php } ?>
                                         <p class="text-break mb-0 decode"><?= $data["message"] ?></p>
                                         <p class="m-0 float-end"><?= $data["time"] ?></p>
@@ -89,7 +93,6 @@
                 <textarea type="text" class="form-control resize-none" id="message" rows="1" cols="10"></textarea>
                 <input type="hidden" id="encryption" value="<?= $controller->getEncryption(); ?>">
                 <input type="hidden" id="username" value="<?= $controller->getUsername(); ?>">
-                <input type="hidden" id="messageCount" value="<?= $controller->getMessageCount(); ?>">
             </div>
             <div class="col-auto float-end" id="buttonCol">
                 <div class="row">
@@ -124,5 +127,5 @@
 </div>
 <script src="<?= $projectPath ?>js/decodeMessages.js"></script>
 <script src="<?= $projectPath ?>js/message.js"></script>
-<script src="<?= $projectPath ?>js/onlineStatus.js"></script>
 <script src="<?= $projectPath ?>js/room.js"></script>
+<script src="<?= $projectPath ?>js/onlineStatus.js"></script>

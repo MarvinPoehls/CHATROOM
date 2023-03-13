@@ -7,26 +7,7 @@ class User2Chatroom extends BaseModel
     protected $columns = ["user_id", "chatroom_id"];
     protected $user_id;
     protected $chatroom_id;
-
-    public function getUserId()
-    {
-        return $this->user_id;
-    }
-
-    public function setUserId($userId)
-    {
-        $this->user_id = $userId;
-    }
-
-    public function getChatroomId()
-    {
-        return $this->chatroom_id;
-    }
-
-    public function setChatroomId($chatroom_id)
-    {
-        $this->chatroom_id = $chatroom_id;
-    }
+    protected $join_time;
 
     public function isNew($userId, $chatroomId): bool
     {
@@ -53,14 +34,46 @@ class User2Chatroom extends BaseModel
         }
     }
 
-    protected static function isDuplicate($userId, $roomId): bool
+    public static function isDuplicate($userId, $roomId): bool
     {
-        $sql = "SELECT * FROM user2chatroom WHERE user_id = ". $userId . "AND chatroom_id = ". $roomId;
+        $sql = "SELECT * FROM user2chatroom WHERE user_id = ". $userId . " AND chatroom_id = ". $roomId;
         $result = DatabaseConnection::executeMysqlQuery($sql);
-        if ($row = mysqli_fetch_row($result)) {
+        if (mysqli_fetch_row($result)) {
             return true;
-        } else {
-            return false;
         }
+        return false;
+    }
+
+    public static function getJoinTimeByUsername($username)
+    {
+        $sql = "SELECT join_time FROM `user2chatroom` LEFT JOIN user on user.id = user2chatroom.user_id WHERE user.name = ".$username;
+        $result = DatabaseConnection::executeMysqlQuery($sql);
+        $row = mysqli_fetch_row($result);
+        return $row[0];
+    }
+
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+    }
+
+    public function getChatroomId()
+    {
+        return $this->chatroom_id;
+    }
+
+    public function setChatroomId($chatroom_id)
+    {
+        $this->chatroom_id = $chatroom_id;
+    }
+
+    public function getJoinTime()
+    {
+        return $this->join_time;
     }
 }

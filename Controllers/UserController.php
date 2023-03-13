@@ -2,6 +2,11 @@
 
 class UserController extends BaseController
 {
+    public function render()
+    {
+
+    }
+
     public function add()
     {
         $room = $this->getRequestParameter("room");
@@ -39,5 +44,19 @@ class UserController extends BaseController
         $members = $chatroom->getMembers();
         echo json_encode($members);
         exit();
+    }
+
+    public function isUserOnline()
+    {
+        $room = $this->getRequestParameter('room');
+        $username = $this->getRequestParameter("username");
+
+        $user = new User();
+        $userId = $user->getIdByName($username);
+
+        $chatroom = new Chatroom();
+        $roomId = $chatroom->getIdByName($room);
+
+        echo json_encode(User2Chatroom::isDuplicate($userId, $roomId));
     }
 }

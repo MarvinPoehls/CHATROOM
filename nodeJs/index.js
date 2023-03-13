@@ -21,6 +21,14 @@ io.on('connection', (socket) => {
     socket.on('userOffline', (user, room) => {
         io.emit('newOffline' + room, user);
     });
+
+    socket.on('userJoined', (user, room) => {
+        io.emit('userJoined' + room, user);
+    });
+
+    socket.on('userLeft', (user, room) => {
+        io.emit('userLeft' + room, user);
+    });
 });
 
 http.listen(8080, () => console.log('listening on http://localhost:8080'));

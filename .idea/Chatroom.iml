@@ -7,5 +7,7 @@
     <orderEntry type="library" name="crypto-js" level="application" />
     <orderEntry type="library" name="socket.io" level="application" />
     <orderEntry type="library" name="bs5-lightbox" level="application" />
+    <orderEntry type="library" name="jquery-color" level="application" />
+    <orderEntry type="library" name="jqueryui" level="application" />
   </component>
 </module>

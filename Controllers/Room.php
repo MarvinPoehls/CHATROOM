@@ -18,20 +18,12 @@ class Room extends BaseController
         $this->username = $this->getRequestParameter("username");
         $this->checkUser();
 
-        $this->addUser2Chatroom();
+        $u2c = new User2Chatroom();
+        $u2c->setUserId($this->user->getId());
+        $u2c->setChatroomId($this->chatroom->getId());
+        $u2c->save();
 
         parent::render();
-    }
-
-    public function getMessageCount(): int
-    {
-        $file = fopen("chatlogs/".$this->name.".csv", "r");
-        fgetcsv($file);
-        $i = 0;
-        while ($row = fgetcsv($file)) {
-            $i++;
-        }
-        return $i;
     }
 
     public function getMembers()
@@ -46,14 +38,24 @@ class Room extends BaseController
 
     public function getData(): array
     {
-        $data = [];
-        $file = fopen("chatlogs/".$this->chatroom->getChatlog(), "r");
-        fgetcsv($file);
-        while($row = fgetcsv($file)) {
-            $data[] = array("message" => $row[0], "username" => $row[1], "image" => $row[2], "time" => $row[3]);
+        $messageModel = new Message();
+        $data = $messageModel->getMessages($this->chatroom->getId());
+        $messages = [];
+        foreach($data as $message) {
+            $messages[] = array("message" => $message[0], "username" => $message[1], "image" => $message[2], "time" => $message[3]);
         }
-        fclose($file);
-        return $data;
+        return $messages;
+    }
+
+    public function isMessageSendAfterJoin($messageTime): bool
+    {
+        $messageTime = strtotime($messageTime);
+        $joinTime = User2Chatroom::getJoinTimeByUsername($this->username);
+        $joinTime = strtotime($joinTime);
+        if ($messageTime > $joinTime) {
+            return true;
+        }
+        return false;
     }
 
     protected function checkUser()
@@ -64,16 +66,6 @@ class Room extends BaseController
             $this->user->save();
         } else {
             $this->user->load($this->user->getIdByName($this->username));
-        }
-    }
-
-    protected function addUser2Chatroom()
-    {
-        if ($this->chatroom->isUserNew($this->user->getId())) {
-            $u2a = new User2Chatroom();
-            $u2a->setUserId($this->user->getId());
-            $u2a->setChatroomId($this->chatroom->getId());
-            $u2a->save();
         }
     }
 
