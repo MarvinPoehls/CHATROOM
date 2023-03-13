@@ -18,18 +18,18 @@ class Message extends BaseController
 
     public function addMessage()
     {
-        $values = [];
-        $values[] .= $this->getRequestParameter("text");
-        $values[] .= $this->getRequestParameter("user");
-        $values[] .= $this->getRequestParameter("image");
-        $values[] .= $this->getRequestParameter("time");
-        $filename = $this->getRequestParameter("file");
+        $text = $this->getRequestParameter("text");
+        $image = $this->getRequestParameter("image");
+        $time = $this->getRequestParameter("time");
 
-        $file = fopen("chatlogs/".$filename, "a");
+        $user = new User();
+        $userId = $user->getIdByName($this->getRequestParameter("user"));
 
-        fputcsv($file, $values);
+        $room = new Chatroom();
+        $roomId = $room->getIdByName($this->getRequestParameter("room"));
 
-        fclose($file);
+        $sql = "INSERT INTO message (text, image, user_id, chatroom_id) VALUES ('$text', '$image', '$userId', '$roomId')";
+        DatabaseConnection::executeMysqlQuery($sql);
 
         exit();
     }
