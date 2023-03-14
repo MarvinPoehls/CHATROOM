@@ -28,8 +28,17 @@
                     <div class="col-12 col-lg-6 d-grid">
                         <button type="button" onclick="checkLoad()" class="btn btn-primary my-3">Chatroom beitreten</button>
                     </div>
-                    <div class="col-12 col-lg-6 d-grid text-end">
-                        <button type="button" onclick="checkCreate()" class="btn btn-primary my-3">Neuen Chatroom anlegen</button>
+                    <div class="col-12 col-lg-6 d-grid">
+                        <div class="row px-2">
+                            <button type="button" onclick="checkCreate()" class="col btn btn-primary my-3 rounded-0 rounded-start">Neuen Chatroom anlegen</button>
+                            <div class="col-auto px-0">
+                                <button type="button" class="btn btn-primary my-3 rounded-0 rounded-end" onclick="toggleOptions()"><i class="bi bi-gear-fill"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 d-none d-md-block"></div>
+                    <div class="col-12 col-md-6 "  style="display: none" id="privacyCheck">
+                        <label class="text-secondary"><input type="checkbox" id="private" class="form-check-input" checked> Privater Chatroom</label>
                     </div>
                 </div>
             </div>

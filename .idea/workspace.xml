@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97eea95a-4297-4f19-8341-2435f8136cbc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Models/Message.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/index.bundle.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Chatroom.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Chatroom.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b565787c-d3c1-4e8c-b797-f0c81efd9939.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b565787c-d3c1-4e8c-b797-f0c81efd9939.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+    <list default="true" id="f5c005ec-1a2a-4f1d-a94a-b72752f00637" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/CreateRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CreateRoom.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/MessageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Room.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/Chatroom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Chatroom.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/User2Chatroom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/User2Chatroom.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/foyer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/foyer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/checkInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/checkInput.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/onlineStatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/onlineStatus.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodeJs/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/nodeJs/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

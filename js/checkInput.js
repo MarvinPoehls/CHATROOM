@@ -11,6 +11,7 @@ roomInput.on( "keypress", function (e) {
 function checkCreate() {
     let username = removeHtml(usernameInput.val().trim());
     let room = removeHtml(roomInput.val().trim());
+    let privacy = $('#private').is(':checked');
 
     if (room !== "" && username !== "") {
         $.ajax({
@@ -19,7 +20,7 @@ function checkCreate() {
             data: {controller: 'Chatroom', action: 'isDuplicate', room: room},
             success: function (data) {
                 if (data === "false") {
-                    window.location.href = "index.php?controller=CreateRoom&room=" + room + "&username=" + username;
+                    window.location.href = "index.php?controller=CreateRoom&room=" + room + "&username=" + username + "&privacy=" + privacy;
                 } else {
                     $('#errorText').text('Der Name "' + room + '" ist schon vergeben.');
                     $('#modal').modal('show');
@@ -70,4 +71,8 @@ function checkUsername(room) {
 function removeHtml(text) {
     text = $.parseHTML(text);
     return $(text).text();
+}
+
+function toggleOptions() {
+    $('#privacyCheck').slideToggle();
 }

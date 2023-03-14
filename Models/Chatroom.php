@@ -3,10 +3,11 @@
 class Chatroom extends BaseModel
 {
     protected $table = "chatroom";
-    protected $columns = ["id", "name", "encryption"];
+    protected $columns = ["id", "name", "encryption", "private"];
     protected $id = "";
     protected $name = "";
     protected $encryption = "";
+    protected $private;
 
     public function __construct($id = false)
     {
@@ -28,7 +29,7 @@ class Chatroom extends BaseModel
 
     public static function getRandomRoomsJson($amount = 4): array
     {
-        $sql = "SELECT name FROM chatroom ORDER BY RAND() LIMIT " . $amount;
+        $sql = "SELECT name FROM chatroom WHERE private = false ORDER BY RAND() LIMIT " . $amount;
         $result = DatabaseConnection::executeMysqlQuery($sql);
         $rooms = [];
         while($row = mysqli_fetch_row($result)) {
@@ -104,6 +105,16 @@ class Chatroom extends BaseModel
     public function setEncryption(string $encryption)
     {
         $this->encryption = $encryption;
+    }
+
+    public function getPrivate()
+    {
+        return $this->private;
+    }
+
+    public function setPrivate($private)
+    {
+        $this->private = $private;
     }
 
 }

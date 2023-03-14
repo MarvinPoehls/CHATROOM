@@ -51,7 +51,7 @@
                                     <div class="bg-light rounded-3 d-inline-block p-2">
                                         <?php if ($data["image"] != "") { ?>
                                             <a href="<?= $data["image"] ?>" data-toggle="lightbox">
-                                                <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded">
+                                                <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded d-block">
                                             </a>
                                         <?php } ?>
                                         <p class="text-start text-break mb-0 decode"><?= $data["message"] ?></p>
@@ -74,7 +74,7 @@
                                         <p class="fw-bold mb-1"><?= $data["username"] ?></p>
                                         <?php if ($data["image"] != "") { ?>
                                             <a href="<?= $data["image"] ?>" data-toggle="lightbox" data-gallery="<?= $controller->getName() ?>-gallery">
-                                                <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded">
+                                                <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded d-block">
                                             </a>
                                         <?php } ?>
                                         <p class="text-break mb-0 decode"><?= $data["message"] ?></p>
