@@ -3,7 +3,7 @@
         <div class="p-md-2">
             <div class="row p-0">
                 <div class="col text-light overflow-hidden pt-1">
-                    <h4 class="w-auto responsive-header text-center">Aktive Teilnehmer</h4>
+                    <h4 class="w-auto responsive-header text-center">Teilnehmer</h4>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
         </div>
         <div class="row px-1 px-sm-4 overflow-auto position-relative d-flex align-items-start mh-69 mh-sm-80" id="messages">
             <?php foreach ($controller->getData() as $data) {?>
-                <?php if (($data["message"] != "" || $data["image"] != "") && $controller->isMessageSendAfterJoin($data["time"])) { ?>
+                <?php if (($data["message"] != "" || $data["image"] != "")) { ?>
                     <?php if ($data["username"] == $controller->getUsername()) {?>
                         <div class="col-1 col-md-3"></div>
                         <div class="col-11 col-md-9 my-2 p-2">
@@ -51,11 +51,11 @@
                                     <div class="bg-light rounded-3 d-inline-block p-2">
                                         <?php if ($data["image"] != "") { ?>
                                             <a href="<?= $data["image"] ?>" data-toggle="lightbox">
-                                                <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded d-block">
+                                                <img src="<?= $data["image"] ?>" width="200" class="img-fluid d-block">
                                             </a>
                                         <?php } ?>
                                         <p class="text-start text-break mb-0 decode"><?= $data["message"] ?></p>
-                                        <p class="m-0 float-start text-muted"><?= $data["time"] ?></p>
+                                        <p class="m-0 float-start text-muted"><?= $controller->simplifyTime($data["time"]); ?></p>
                                     </div>
                                 </div>
                                 <div class="col-auto text-end">
@@ -71,14 +71,14 @@
                                 </div>
                                 <div class="col">
                                     <div class="bg-primary rounded-3 text-white d-inline-block p-2">
-                                        <p class="fw-bold mb-1"><?= $data["username"] ?></p>
+                                        <p class="fw-bold mb-1 text-break"><?= $data["username"] ?></p>
                                         <?php if ($data["image"] != "") { ?>
                                             <a href="<?= $data["image"] ?>" data-toggle="lightbox" data-gallery="<?= $controller->getName() ?>-gallery">
-                                                <img src="<?= $data["image"] ?>" width="200" class="img-fluid rounded d-block">
+                                                <img src="<?= $data["image"] ?>" width="200" class="img-fluid d-block">
                                             </a>
                                         <?php } ?>
                                         <p class="text-break mb-0 decode"><?= $data["message"] ?></p>
-                                        <p class="m-0 float-end"><?= $data["time"] ?></p>
+                                        <p class="m-0 float-end"><?= $controller->simplifyTime($data["time"]); ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="col-auto p-0">
                         <label id="inputLabel" for="imageInput" class="btn p-1 pe-2" role="button">
-                            <i class="bi bi-paperclip text-white" id="inputIcon"></i>
+                            <i class="bi bi-paperclip text-white icon" id="inputIcon"></i>
                         </label>
                         <button type="button" class="btn btn-primary shadow-lg rounded-circle" onclick="sendMessage()"><i class="bi bi-send-fill"></i></button>
                         <input type="file" class="d-none" id="imageInput" onchange="imageInput()" accept="image/png, image/jpeg image/gif image/svg">

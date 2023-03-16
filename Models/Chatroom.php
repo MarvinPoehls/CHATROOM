@@ -18,7 +18,7 @@ class Chatroom extends BaseModel
 
     public static function getRandomRooms($amount = 1): array
     {
-        $sql = "SELECT name FROM chatroom ORDER BY RAND() LIMIT " . $amount;
+        $sql = "SELECT name FROM chatroom WHERE private = false ORDER BY RAND() LIMIT " . $amount;
         $result = DatabaseConnection::executeMysqlQuery($sql);
         $rooms = [];
         while($row = mysqli_fetch_row($result)) {

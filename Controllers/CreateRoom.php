@@ -8,7 +8,7 @@ class CreateRoom extends BaseController
         $username = $this->getRequestParameter("username");
         $privacy = $this->getRequestParameter("privacy");
 
-        if($privacy) {
+        if($privacy == "true") {
             $privacy = 1;
         } else {
             $privacy = 0;

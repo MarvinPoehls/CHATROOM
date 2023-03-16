@@ -72,22 +72,39 @@ function addOnlineUsers() {
 }
 
 function addHtmlUser(name) {
+    let fullName = name;
+    if (name.length > 15) {
+        name = name.substring(0,13) + "..";
+    }
+
     let user = $(
-        '<div id="' + name + '" class="row p-md-2 p-0 bg-dark-blue m-md-2 m-1 rounded justify-content-center border-5 border-bottom border-success">\n' +
+        '<div id="' + fullName + '" class="row p-md-2 p-0 bg-dark-blue m-md-2 m-1 rounded justify-content-center border-5 border-bottom border-success">\n' +
         '   <div class="col-auto">\n ' +
         '       <img src="https://www.linkpicture.com/q/ProfilPictureDark.png" class="d-inline-block rounded-circle img-fluid" height="40" width="40">\n' +
         '   </div>\n' +
-        '   <div class="col-12 justify-content-center d-block p-0">\n' +
-        '       <p class="text-white text-center responsive-text m-0">' + name + '</p>\n' +
+        '   <div id="nameDiv" class="col-12 justify-content-center d-block p-0">\n' +
+        '       <p id="shortName' + fullName + '" class="text-white text-center responsive-text text-break m-0">' + name + '</p>\n' +
+        '       <p id="fullName' + fullName + '" class="text-white text-center responsive-text text-break m-0" style="display: none">' + fullName + '</p>\n' +
         '   </div>\n' +
         '</div>'
     );
 
     $('#activeUser').append(user);
+
+    if (name !== fullName) {
+        $('#' + fullName).hover(function () {
+            $('#shortName' + fullName).stop().slideToggle();
+            $('#fullName' + fullName).stop().slideToggle();
+        });
+    }
 }
 
 function userJoinMessage(name) {
     let messages = $('#messages');
+
+    if (name.length > 20) {
+        name = name.substring(0,18) + "..";
+    }
 
     let joinMessage = $('<div class="row text-center mt-3 p-1">\n' +
         '                   <div class="col d-none d-md-inline-block"></div>\n' +
@@ -102,6 +119,10 @@ function userJoinMessage(name) {
 function userLeftMessage(name) {
     let messages = $('#messages');
 
+    if (name.length > 20) {
+        name = name.substring(0,18) + "..";
+    }
+
     let leftMessage = $('<div class="row text-center mt-3 p-1">\n' +
         '                   <div class="col d-none d-md-inline-block"></div>\n' +
         '                       <div class="col">\n' +
@@ -110,20 +131,4 @@ function userLeftMessage(name) {
         '                   <div class="col d-none d-md-inline-block"></div>\n' +
         '                </div>');
     messages.append(leftMessage);
-}
-
-function newUserSetup() {
-    $.ajax({
-        url: "index.php",
-        type: "POST",
-        data: {controller: 'UserController', action: 'isUserOnline', username: thisUser, room: room},
-        success: function(data){
-            data = JSON.parse(data);
-            console.log(data);
-            if (!data) {
-                addUserToDatabase();
-                socket.emit('userJoined', thisUser, room);
-            }
-        }
-    });
 }

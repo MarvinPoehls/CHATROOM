@@ -11,7 +11,7 @@
         <div class="card text-center mt-4">
             <div class="row card-body">
                 <div class="col-12">
-                    <input type="text" class="form-control my-3" id="username" placeholder="Benutzername" value="<?php if($controller->getRequestParameter('username')) echo $controller->getRequestParameter('username'); ?>">
+                    <input type="text" class="form-control my-3" id="username" placeholder="Benutzername" maxlength="70" value="<?php if($controller->getRequestParameter('username')) echo $controller->getRequestParameter('username'); ?>">
                 </div>
             </div>
         </div>

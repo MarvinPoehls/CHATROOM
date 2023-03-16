@@ -5,8 +5,8 @@ class Room extends BaseController
     protected $title = "Room";
     protected $view = "room";
     protected $name = "roomname";
-    protected $chatroom;
     protected $username = "";
+    protected $chatroom;
     protected $user;
 
     public function render()
@@ -67,6 +67,12 @@ class Room extends BaseController
         } else {
             $this->user->load($this->user->getIdByName($this->username));
         }
+    }
+
+    public function simplifyTime($time)
+    {
+        $time = strtotime($time);
+        return date('H:i', $time);
     }
 
     public function getUsername(): string

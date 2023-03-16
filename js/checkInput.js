@@ -9,8 +9,8 @@ roomInput.on( "keypress", function (e) {
 });
 
 function checkCreate() {
-    let username = removeHtml(usernameInput.val().trim());
-    let room = removeHtml(roomInput.val().trim());
+    let username = removeHarmfulChars(usernameInput.val().trim());
+    let room = removeHarmfulChars(roomInput.val().trim());
     let privacy = $('#private').is(':checked');
 
     if (room !== "" && username !== "") {
@@ -34,8 +34,8 @@ function checkCreate() {
 }
 
 function checkLoad() {
-    let username = removeHtml(usernameInput.val().trim());
-    let room = removeHtml(roomInput.val().trim());
+    let username = removeHarmfulChars(usernameInput.val().trim());
+    let room = removeHarmfulChars(roomInput.val().trim());
 
     if (room !== "" && username !== "") {
         $.ajax({
@@ -58,7 +58,7 @@ function checkLoad() {
 }
 
 function checkUsername(room) {
-    let username = removeHtml(usernameInput.val().trim());
+    let username = removeHarmfulChars(usernameInput.val().trim());
 
     if (username !== "") {
         window.location.href = "index.php?controller=Room&room=" + room + "&username=" + username;
@@ -68,9 +68,8 @@ function checkUsername(room) {
     }
 }
 
-function removeHtml(text) {
-    text = $.parseHTML(text);
-    return $(text).text();
+function removeHarmfulChars(text) {
+     return text.replaceAll(/[:=!/|&;$%@"<>()+,]/g, "");
 }
 
 function toggleOptions() {

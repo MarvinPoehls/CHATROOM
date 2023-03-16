@@ -136,7 +136,7 @@ function addHtmlMessage(text, user, time, image = false) {
             let picture = $('<img>')
                 .attr('src', image)
                 .attr('width', '200')
-                .attr('class','img-fluid rounded d-block');
+                .attr('class','img-fluid d-block');
             textDiv.append(picture);
         }
 
@@ -164,7 +164,7 @@ function addHtmlMessage(text, user, time, image = false) {
             let picture = $('<img>')
                 .attr('src', image)
                 .attr('width', '200')
-                .attr('class','img-fluid rounded d-block');
+                .attr('class','img-fluid d-block');
             textDiv.append(picture);
         }
 
