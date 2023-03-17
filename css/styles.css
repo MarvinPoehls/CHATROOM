@@ -120,28 +120,6 @@
     background: #5a5894;
 }
 
-.responsive-text {font-size:0.7rem;} /*1rem = 16px*/
-
-/* Small devices (landscape phones, 544px and up) */
-@media (min-width: 544px) {
-    .responsive-text {font-size:0.7rem;} /*1rem = 16px*/
-}
-
-/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-@media (min-width: 768px) {
-    .responsive-text {font-size:0.8rem;} /*1rem = 16px*/
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-    .responsive-text {font-size:1rem;} /*1rem = 16px*/
-}
-
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-    .responsive-text {font-size:1rem;} /*1rem = 16px*/
-}
-
 .responsive-header {font-size:8px;} /*1rem = 16px*/
 
 /* Small devices (landscape phones, 544px and up) */

@@ -18,7 +18,6 @@ class CreateRoom extends BaseController
         $room->setName($roomName);
         $room->setEncryption(bin2hex(random_bytes(32)));
         $room->setPrivate($privacy);
-        echo $room->getEncryption();
         $room->save();
         $this->redirect("index.php?controller=Room&room=".$roomName."&username=".$username);
         exit();

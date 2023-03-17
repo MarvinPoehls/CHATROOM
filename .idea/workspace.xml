@@ -4,13 +4,12 @@
     <list default="true" id="f5c005ec-1a2a-4f1d-a94a-b72752f00637" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/CreateRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CreateRoom.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Room.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Chatroom.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Chatroom.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/foyer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/foyer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/room.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/checkInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/checkInput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/foyer.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/foyer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/onlineStatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/onlineStatus.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +111,8 @@
       <workItem from="1677836983558" duration="47000" />
       <workItem from="1678698916885" duration="13829000" />
       <workItem from="1678870990654" duration="19880000" />
-      <workItem from="1678957532153" duration="482000" />
+      <workItem from="1678957532153" duration="16788000" />
+      <workItem from="1679041169895" duration="2562000" />
     </task>
     <servers />
   </component>

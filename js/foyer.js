@@ -18,7 +18,7 @@ function reloadRandomChats() {
         type: "POST",
         data: {controller: 'Chatroom', action: 'getRandomRoomsJson'},
         success: function(data){
-            let header = $('<h2 id="randomChatsTitle" class="border-bottom m-2 pb-2">Zufällige Chatrooms<button class="btn float-end" onClick="reloadRandomChats();"><i class="bi bi-arrow-clockwise"></i></button></h2>');
+            let header = $('<h2 id="randomChatsTitle" class="border-bottom m-2 pb-2">Zufällige Chatrooms<button class="btn float-end" onClick="reloadRandomChats();"><i class="bi bi-arrow-clockwise text-secondary"></i></button></h2>');
             $('#randomChats').empty().append(header);
             $.each(JSON.parse(data), function (i, room) {
                 let roomString = "'" + room + "'";

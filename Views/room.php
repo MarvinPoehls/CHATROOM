@@ -3,7 +3,7 @@
         <div class="p-md-2">
             <div class="row p-0">
                 <div class="col text-light overflow-hidden pt-1">
-                    <h4 class="w-auto responsive-header text-center">Teilnehmer</h4>
+                    <h4 class="w-auto responsive-header text-center pb-3 border-bottom border-white">Teilnehmer</h4>
                 </div>
             </div>
         </div>

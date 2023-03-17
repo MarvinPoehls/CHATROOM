@@ -196,8 +196,7 @@ function clearInputs(clearText = true) {
         textInput.val("");
     }
 
-    let imageInput = $('#imageInput');
-    imageInput.val('');
+    $('#imageInput').val('');
     $('#textCol').attr('class', 'col');
     $('#inputIcon').attr('class', 'bi bi-paperclip text-white');
     $('#inputLabel').attr('for', 'imageInput');
@@ -224,21 +223,16 @@ function scrollDown() {
 }
 
 function playNotificationSound() {
-    let audio = new Audio('audio/message.mp3');
-    let option = $('#notificationOption').find(":selected").val();
+    const audio = new Audio('audio/message.mp3');
+    const option = $('#notificationOption').val();
 
-    switch (option) {
-        case "activ":
-            audio.play();
-            break;
-        case "inactiv":
-            break;
-        case "background":
-            if (document.visibilityState === "hidden") {
-                audio.play();
-            }
-            break;
-        default:
-            audio.play();
+    if (option === 'background' && document.visibilityState !== 'hidden') {
+        return;
     }
+
+    if (option === 'inactiv') {
+        return;
+    }
+
+    audio.play();
 }

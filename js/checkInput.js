@@ -9,9 +9,9 @@ roomInput.on( "keypress", function (e) {
 });
 
 function checkCreate() {
-    let username = removeHarmfulChars(usernameInput.val().trim());
-    let room = removeHarmfulChars(roomInput.val().trim());
-    let privacy = $('#private').is(':checked');
+    const username = removeHarmfulChars(usernameInput.val().trim());
+    const room = removeHarmfulChars(roomInput.val().trim());
+    const privacy = $('#private').is(':checked');
 
     if (room !== "" && username !== "") {
         $.ajax({
@@ -34,8 +34,8 @@ function checkCreate() {
 }
 
 function checkLoad() {
-    let username = removeHarmfulChars(usernameInput.val().trim());
-    let room = removeHarmfulChars(roomInput.val().trim());
+    const username = removeHarmfulChars(usernameInput.val().trim());
+    const room = removeHarmfulChars(roomInput.val().trim());
 
     if (room !== "" && username !== "") {
         $.ajax({
@@ -58,7 +58,7 @@ function checkLoad() {
 }
 
 function checkUsername(room) {
-    let username = removeHarmfulChars(usernameInput.val().trim());
+    const username = removeHarmfulChars(usernameInput.val().trim());
 
     if (username !== "") {
         window.location.href = "index.php?controller=Room&room=" + room + "&username=" + username;
@@ -68,8 +68,10 @@ function checkUsername(room) {
     }
 }
 
-function removeHarmfulChars(text) {
-     return text.replaceAll(/[:=!/|&;$%@"<>()+,]/g, "");
+function removeHarmfulChars(str) {
+    const excludedChars = ['_', '-'];
+    const regex = new RegExp(`[^a-zA-Z0-9${excludedChars.join('\\')}\s]`, 'g');
+    return str.replace(regex, '').trim();
 }
 
 function toggleOptions() {

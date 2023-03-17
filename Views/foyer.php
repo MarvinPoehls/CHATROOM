@@ -48,7 +48,7 @@
     <div class="col-3 d-sm-none d-md-block"></div>
     <div class="col-12 col-md-6 mb-5">
         <div id="randomChats" class="card text-center my-3">
-            <h2 id="randomChatsTitle" class="border-bottom m-2 pb-2">Zufällige Chatrooms<button class="btn float-end" onClick="reloadRandomChats();"><i class="bi bi-arrow-clockwise"></i></button></h2>
+            <h2 id="randomChatsTitle" class="border-bottom m-2 pb-2">Zufällige Chatrooms<button class="btn float-end" onClick="reloadRandomChats();"><i class="bi bi-arrow-clockwise text-secondary"></i></button></h2>
             <?php foreach (Chatroom::getRandomRooms(4) as $room) { ?>
                 <button id="<?= $room ?>" class="p-2 m-2 btn btn-outline-light text-secondary" onclick="checkUsername('<?= $room ?>')"><h3><?= $room ?></h3></button>
             <?php } ?>
@@ -59,11 +59,11 @@
 <div id="modal" class="modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-body">
-                <p id="errorText">Error</p>
+            <div class="modal-body p-4">
+                <p id="errorText" class="m-0">Error</p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+            <div class="modal-footer p-1">
+                <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
